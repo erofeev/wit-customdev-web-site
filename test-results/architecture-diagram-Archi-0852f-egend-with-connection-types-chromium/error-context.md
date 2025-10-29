@@ -1,0 +1,501 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - navigation [ref=e6]:
+      - link "TechSolutions" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e8]: TechSolutions
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Главная" [ref=e11] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e12]:
+          - link "Услуги" [ref=e13] [cursor=pointer]:
+            - /url: /services
+        - listitem [ref=e14]:
+          - link "Технологии" [ref=e15] [cursor=pointer]:
+            - /url: /technologies
+        - listitem [ref=e16]:
+          - link "Платформа" [ref=e17] [cursor=pointer]:
+            - /url: /platform
+        - listitem [ref=e18]:
+          - link "Сотрудничество" [ref=e19] [cursor=pointer]:
+            - /url: /cooperation
+        - listitem [ref=e20]:
+          - link "Кейсы" [ref=e21] [cursor=pointer]:
+            - /url: /cases
+        - listitem [ref=e22]:
+          - link "Обсудить проект" [ref=e23] [cursor=pointer]:
+            - /url: /contact
+  - main [ref=e24]:
+    - generic [ref=e25]:
+      - generic [ref=e27]:
+        - heading "Платформа для быстрого старта проектов" [level=1] [ref=e28]
+        - paragraph [ref=e29]: Не одно решение для всех, а модульная архитектура под каждую задачу
+        - paragraph [ref=e31]: Наша платформа — это набор готовых, мощных компонентов, которые позволяют быстро строить веб-системы любой сложности. Каждый компонент решает конкретную задачу, а комбинация компонентов дает неограниченные возможности.
+      - generic [ref=e33]:
+        - 'heading "Архитектура платформы: концепция \"ЛЕГО\"" [level=2] [ref=e34]'
+        - paragraph [ref=e35]: Модульная архитектура — собирайте систему как конструктор
+        - generic [ref=e36]:
+          - img [ref=e38]:
+            - generic [ref=e40]: Infrastructure Container
+            - generic [ref=e104]: replication
+            - generic [ref=e105] [cursor=pointer]:
+              - generic: 👤
+              - generic: Internet
+              - generic: User Devices / External Systems
+            - generic [ref=e107] [cursor=pointer]:
+              - generic: Traefik
+              - generic: On-premise Gateway / Reverse Proxy / Load Balancer
+            - generic [ref=e109] [cursor=pointer]:
+              - generic: Support Channel
+              - generic: SSH / VPN
+              - generic: Admin Access
+              - generic: For Engineers
+            - generic [ref=e111] [cursor=pointer]:
+              - generic: Integration Channels
+              - generic: REST / GraphQL / gRPC
+              - generic: SOAP / WebSockets
+              - generic: File Exchange (FTP/SFTP)
+              - generic: Client Systems Integration
+            - generic [ref=e113] [cursor=pointer]:
+              - generic: "Nginx #1"
+              - generic: Frontend
+              - generic: Vue / React
+            - generic [ref=e116] [cursor=pointer]:
+              - generic: "Nginx #2"
+              - generic: Frontend
+              - generic: Vue / React
+            - generic [ref=e119]: ⬍ Scalable ⬍
+            - generic [ref=e120]: Load Balanced
+            - generic [ref=e121] [cursor=pointer]:
+              - generic: "API Gateway #1"
+              - generic: REST API • GraphQL • Auth
+              - generic: Rate Limiting • Validation
+            - generic [ref=e123] [cursor=pointer]:
+              - generic: "API Gateway #2"
+              - generic: REST API • GraphQL • Auth
+              - generic: Rate Limiting • Validation
+            - generic [ref=e125] [cursor=pointer]:
+              - generic: ". . . #N"
+              - generic: Scalable
+            - generic [ref=e127] [cursor=pointer]:
+              - generic: Redis Cache
+              - generic: In-Memory Cache
+              - generic: MemoryLRU fallback
+            - generic [ref=e129] [cursor=pointer]:
+              - generic: Kafka
+              - generic: Event Streaming
+              - generic: Distributed Log
+              - generic: High Throughput
+            - generic [ref=e131] [cursor=pointer]:
+              - generic: NATS
+              - generic: Message Broker
+              - generic: High-Speed Messaging
+              - generic: Pub/Sub • Req/Reply
+            - generic [ref=e133] [cursor=pointer]:
+              - generic: Сервис сущностей
+              - generic: Entities CRUD
+              - generic: Validation
+              - generic: Permissions
+              - generic: Moleculer Broker (NATS / Kafka / Redis)
+            - generic [ref=e139] [cursor=pointer]:
+              - generic: User & Auth Service
+              - generic: User
+              - generic: Auth
+              - generic: Roles
+              - generic: Groups
+              - generic: Moleculer Broker (NATS / Kafka / Redis)
+            - generic [ref=e146] [cursor=pointer]:
+              - generic: Events & Notifications
+              - generic: Events
+              - generic: Notifications
+              - generic: Email Queue
+              - generic: Push
+              - generic: SMS
+              - generic: Webhooks
+              - generic: Templates
+              - generic: Moleculer Broker (NATS / Kafka / Redis)
+            - generic [ref=e156] [cursor=pointer]:
+              - generic: DB
+              - generic: Dgraph Zero
+              - generic: Cluster Manager
+            - generic [ref=e158] [cursor=pointer]:
+              - generic: DB
+              - generic: Dgraph Alpha
+              - generic: Data Storage
+            - generic [ref=e160] [cursor=pointer]:
+              - generic: CDC
+              - generic: Change Data Capture
+              - generic: → Kafka Topics
+              - generic: Real-time Streaming
+            - generic [ref=e162] [cursor=pointer]:
+              - generic: PostgreSQL
+            - generic [ref=e164] [cursor=pointer]:
+              - generic: MongoDB
+            - generic [ref=e166]: + другие БД...
+            - generic [ref=e167]: "Transporters:"
+            - generic [ref=e168]: NATS • Kafka • Redis • MQTT • AMQP
+            - generic [ref=e169]:
+              - generic [ref=e170]: "Типы связей:"
+              - generic [ref=e171]: Internet
+              - generic [ref=e172]: HTTP/Gateway
+              - generic [ref=e173]: Microservices
+              - generic [ref=e174]: NATS Broker
+              - generic [ref=e175]: Kafka Stream
+              - generic [ref=e176]: Database
+              - generic [ref=e177]: Cache
+              - generic [ref=e178]: CDC Stream
+              - generic [ref=e179]: Perimeter Channel
+              - generic [ref=e181]: Опционально
+          - generic [ref=e182]:
+            - paragraph [ref=e183]: Полная архитектура микросервисной платформы на Moleculer с масштабируемостью, кешированием, CDC и интеграционными каналами
+            - paragraph [ref=e184]: Наведите на компоненты для интерактивного взаимодействия
+      - generic [ref=e186]:
+        - heading "Гибкость выбора компонентов Moleculer" [level=2] [ref=e187]
+        - paragraph [ref=e188]: Выбирайте оптимальные транспортеры и системы кеширования для вашей инфраструктуры
+        - generic [ref=e189]:
+          - generic [ref=e190]:
+            - generic [ref=e191]:
+              - generic [ref=e192]: 🚀
+              - heading "Транспортеры (Message Brokers)" [level=3] [ref=e193]
+              - paragraph [ref=e194]: Pluggable транспортеры для обмена сообщениями между микросервисами
+            - generic [ref=e195]:
+              - generic [ref=e196]:
+                - generic [ref=e197]: NATS
+                - generic [ref=e198]: High-performance messaging system
+                - generic [ref=e199]: Рекомендуется для большинства случаев. Легкий, быстрый, надежный
+              - generic [ref=e200]:
+                - generic [ref=e201]: Kafka
+                - generic [ref=e202]: Distributed event streaming platform
+                - generic [ref=e203]: Для event sourcing, CDC, аналитики. Высокая пропускная способность
+              - generic [ref=e204]:
+                - generic [ref=e205]: Redis
+                - generic [ref=e206]: In-memory data store with pub/sub
+                - generic [ref=e207]: Быстрый транспорт + кеширование в одном. Для небольших систем
+              - generic [ref=e208]:
+                - generic [ref=e209]: MQTT
+                - generic [ref=e210]: IoT-focused messaging protocol
+                - generic [ref=e211]: Для IoT устройств, сенсоров, низкого bandwidth
+              - generic [ref=e212]:
+                - generic [ref=e213]: NATS Streaming
+                - generic [ref=e214]: Persistent streaming with NATS
+                - generic [ref=e215]: Когда нужна персистентность сообщений
+              - generic [ref=e216]:
+                - generic [ref=e217]: AMQP (0.9 / 1.0)
+                - generic [ref=e218]: Advanced Message Queuing Protocol
+                - generic [ref=e219]: Для enterprise интеграций, RabbitMQ
+              - generic [ref=e220]:
+                - generic [ref=e221]: TCP
+                - generic [ref=e222]: Direct node-to-node communication
+                - generic [ref=e223]: Простая прямая коммуникация без внешних зависимостей
+          - generic [ref=e224]:
+            - generic [ref=e225]:
+              - generic [ref=e226]: ⚡
+              - heading "Системы кеширования (Cachers)" [level=3] [ref=e227]
+              - paragraph [ref=e228]: Pluggable кеширование для повышения производительности
+            - generic [ref=e229]:
+              - generic [ref=e230]:
+                - generic [ref=e231]: Redis
+                - generic [ref=e232]: Distributed caching layer
+                - generic [ref=e233]: Production-ready распределенный кеш. Рекомендуется для всех проектов
+              - generic [ref=e234]:
+                - generic [ref=e235]: MemoryLRU
+                - generic [ref=e236]: Memory cache with least-recently-used eviction
+                - generic [ref=e237]: Для одиночных инстансов, разработки, тестов
+              - generic [ref=e238]:
+                - generic [ref=e239]: Memory
+                - generic [ref=e240]: In-process RAM caching
+                - generic [ref=e241]: Простейший кеш для прототипирования
+        - generic [ref=e242]:
+          - heading "Почему Moleculer?" [level=3] [ref=e243]
+          - generic [ref=e244]:
+            - generic [ref=e245]:
+              - generic [ref=e246]: 🔌
+              - generic [ref=e247]: Pluggable архитектура
+              - generic [ref=e248]: Меняйте транспортеры и кеши без изменения кода микросервисов
+            - generic [ref=e249]:
+              - generic [ref=e250]: ⚡
+              - generic [ref=e251]: Высокая производительность
+              - generic [ref=e252]: Оптимизированная коммуникация между сервисами с балансировкой нагрузки
+            - generic [ref=e253]:
+              - generic [ref=e254]: 🛡️
+              - generic [ref=e255]: Fault tolerance
+              - generic [ref=e256]: Circuit breaker, retry, fallback стратегии из коробки
+            - generic [ref=e257]:
+              - generic [ref=e258]: 📊
+              - generic [ref=e259]: Observability
+              - generic [ref=e260]: Встроенные метрики, трейсинг, логирование для полного контроля
+            - generic [ref=e261]:
+              - generic [ref=e262]: 🔄
+              - generic [ref=e263]: Service discovery
+              - generic [ref=e264]: Автоматическое обнаружение сервисов и балансировка нагрузки
+            - generic [ref=e265]:
+              - generic [ref=e266]: 🚀
+              - generic [ref=e267]: Production-ready
+              - generic [ref=e268]: Проверено в production на тысячах проектов по всему миру
+      - generic [ref=e270]:
+        - heading "Ключевые возможности" [level=2] [ref=e271]
+        - paragraph [ref=e272]: 14 мощных компонентов для построения современных систем
+        - generic [ref=e273]:
+          - generic [ref=e275] [cursor=pointer]:
+            - generic [ref=e276]:
+              - generic [ref=e277]: "01"
+              - heading "Графовая база данных для сложных связей" [level=3] [ref=e278]
+            - generic [ref=e279]: Быстрые запросы по 5+ связям между сущностями
+            - button "Развернуть" [ref=e280]:
+              - img [ref=e281]
+          - generic [ref=e284] [cursor=pointer]:
+            - generic [ref=e285]:
+              - generic [ref=e286]: "02"
+              - heading "Трехуровневая система прав" [level=3] [ref=e287]
+            - generic [ref=e288]: Группы + роли + права на поля
+            - button "Развернуть" [ref=e289]:
+              - img [ref=e290]
+          - generic [ref=e293] [cursor=pointer]:
+            - generic [ref=e294]:
+              - generic [ref=e295]: "03"
+              - heading "Assets Service — работа со схемой в реальном времени" [level=3] [ref=e296]
+            - generic [ref=e297]: Изменяем схему и поля на лету без остановки
+            - button "Развернуть" [ref=e298]:
+              - img [ref=e299]
+          - generic [ref=e302] [cursor=pointer]:
+            - generic [ref=e303]:
+              - generic [ref=e304]: "04"
+              - heading "Мониторинг и observability" [level=3] [ref=e305]
+            - generic [ref=e306]: Полная видимость работы системы в реальном времени
+            - button "Развернуть" [ref=e307]:
+              - img [ref=e308]
+          - generic [ref=e311] [cursor=pointer]:
+            - generic [ref=e312]:
+              - generic [ref=e313]: "05"
+              - heading "Контейнеризация и кластеризация" [level=3] [ref=e314]
+            - generic [ref=e315]: Docker + Kubernetes для масштабирования
+            - button "Развернуть" [ref=e316]:
+              - img [ref=e317]
+          - generic [ref=e320] [cursor=pointer]:
+            - generic [ref=e321]:
+              - generic [ref=e322]: "06"
+              - heading "Умное многоуровневое кэширование" [level=3] [ref=e323]
+            - generic [ref=e324]: Browser → CDN → Application → Query cache
+            - button "Развернуть" [ref=e325]:
+              - img [ref=e326]
+          - generic [ref=e329] [cursor=pointer]:
+            - generic [ref=e330]:
+              - generic [ref=e331]: "07"
+              - heading "True микросервисы" [level=3] [ref=e332]
+            - generic [ref=e333]: Service Discovery, Load Balancing, Circuit Breaker
+            - button "Развернуть" [ref=e334]:
+              - img [ref=e335]
+          - generic [ref=e338] [cursor=pointer]:
+            - generic [ref=e339]:
+              - generic [ref=e340]: "08"
+              - heading "Поддержка разных баз данных" [level=3] [ref=e341]
+            - generic [ref=e342]: GraphDB, PostgreSQL, MongoDB, Redis, Elasticsearch
+            - button "Развернуть" [ref=e343]:
+              - img [ref=e344]
+          - generic [ref=e347] [cursor=pointer]:
+            - generic [ref=e348]:
+              - generic [ref=e349]: "09"
+              - heading "Монорепозиторий (Monorepo)" [level=3] [ref=e350]
+            - generic [ref=e351]: Весь код в одном репозитории
+            - button "Развернуть" [ref=e352]:
+              - img [ref=e353]
+          - generic [ref=e356] [cursor=pointer]:
+            - generic [ref=e357]:
+              - generic [ref=e358]: "10"
+              - heading "Интегрированный BPM" [level=3] [ref=e359]
+            - generic [ref=e360]: Автоматизация бизнес-процессов
+            - button "Развернуть" [ref=e361]:
+              - img [ref=e362]
+          - generic [ref=e365] [cursor=pointer]:
+            - generic [ref=e366]:
+              - generic [ref=e367]: "11"
+              - heading "Логирование и аудит" [level=3] [ref=e368]
+            - generic [ref=e369]: Application, Access, Security, Performance logs
+            - button "Развернуть" [ref=e370]:
+              - img [ref=e371]
+          - generic [ref=e374] [cursor=pointer]:
+            - generic [ref=e375]:
+              - generic [ref=e376]: "12"
+              - heading "Метрики производительности" [level=3] [ref=e377]
+            - generic [ref=e378]: Response time, Throughput, Error rate, Resource usage
+            - button "Развернуть" [ref=e379]:
+              - img [ref=e380]
+          - generic [ref=e383] [cursor=pointer]:
+            - generic [ref=e384]:
+              - generic [ref=e385]: "13"
+              - 'heading "Полиглот: микросервисы на разных языках" [level=3] [ref=e386]'
+            - generic [ref=e387]: JavaScript, Python, Java, Go, .NET
+            - button "Развернуть" [ref=e388]:
+              - img [ref=e389]
+          - generic [ref=e392] [cursor=pointer]:
+            - generic [ref=e393]:
+              - generic [ref=e394]: "14"
+              - heading "Frontend на современных фреймворках" [level=3] [ref=e395]
+            - generic [ref=e396]: Angular, React, Vue — выбираем под задачу
+            - button "Развернуть" [ref=e397]:
+              - img [ref=e398]
+      - generic [ref=e401]:
+        - heading "Как это работает вместе" [level=2] [ref=e402]
+        - generic [ref=e403]:
+          - 'heading "Пример: Сервис для управления поставками" [level=3] [ref=e404]'
+          - generic [ref=e405]:
+            - heading "Компоненты:" [level=4] [ref=e406]
+            - generic [ref=e407]:
+              - generic [ref=e408]: Assets Service
+              - generic [ref=e409]: Графовая БД
+              - generic [ref=e410]: BPM для автоматизации
+              - generic [ref=e411]: Микросервисы
+          - generic [ref=e412]:
+            - heading "Процесс:" [level=4] [ref=e413]
+            - list [ref=e414]:
+              - listitem [ref=e415]: Приход новой партии → событие
+              - listitem [ref=e416]: Процесс оценки качества и распределения
+              - listitem [ref=e417]: Уведомления по готовности
+              - listitem [ref=e418]: Запросы к поставщикам через связи
+              - listitem [ref=e419]: "Права: менеджер видит цены, кладовщик — склад"
+          - generic [ref=e420]:
+            - heading "Результат:" [level=4] [ref=e421]
+            - paragraph [ref=e422]: Автоматизация цепочки, полный контроль и быстрая загрузка.
+      - generic [ref=e424]:
+        - heading "Сравнение с аналогами" [level=2] [ref=e425]
+        - generic [ref=e426]:
+          - generic [ref=e427]:
+            - generic [ref=e429]: Обычные CMS/CRM
+            - generic [ref=e430]: Наша платформа
+          - generic [ref=e431]:
+            - generic [ref=e432]: Изменения схемы данных
+            - generic [ref=e433]: Нужна остановка
+            - generic [ref=e434]: Runtime без простоев
+          - generic [ref=e435]:
+            - generic [ref=e436]: Права доступа
+            - generic [ref=e437]: Таблицы/роли
+            - generic [ref=e438]: До уровня полей
+          - generic [ref=e439]:
+            - generic [ref=e440]: Автоматизация процессов
+            - generic [ref=e441]: Дорогие интеграции
+            - generic [ref=e442]: Встроенная
+          - generic [ref=e443]:
+            - generic [ref=e444]: Масштабирование
+            - generic [ref=e445]: Ограничения
+            - generic [ref=e446]: Безлимитное
+          - generic [ref=e447]:
+            - generic [ref=e448]: Поддержка технологий
+            - generic [ref=e449]: Один стек
+            - generic [ref=e450]: Полиглот
+          - generic [ref=e451]:
+            - generic [ref=e452]: Добавление модулей
+            - generic [ref=e453]: Плагины с ограничениями
+            - generic [ref=e454]: Любой микросервис
+          - generic [ref=e455]:
+            - generic [ref=e456]: Кэширование
+            - generic [ref=e457]: Базовое
+            - generic [ref=e458]: Многоуровневое
+          - generic [ref=e459]:
+            - generic [ref=e460]: Разные БД
+            - generic [ref=e461]: Только SQL
+            - generic [ref=e462]: По задаче
+      - generic [ref=e464]:
+        - heading "Преимущества для быстрого старта" [level=2] [ref=e465]
+        - generic [ref=e466]:
+          - generic [ref=e467]:
+            - generic [ref=e468]: ⚡
+            - heading "Прототипирование за дни" [level=3] [ref=e469]
+            - list [ref=e470]:
+              - listitem [ref=e471]: → Готовые компоненты
+              - listitem [ref=e472]: → Изменения схемы в runtime
+              - listitem [ref=e473]: → Без лишней архитектуры на старте
+          - generic [ref=e474]:
+            - generic [ref=e475]: 📈
+            - heading "Масштабная готовность" [level=3] [ref=e476]
+            - list [ref=e477]:
+              - listitem [ref=e478]: → Сложные связи и высокие нагрузки
+              - listitem [ref=e479]: → Микросервисы, нужные на старте
+              - listitem [ref=e480]: → Горизонтальное масштабирование
+          - generic [ref=e481]:
+            - generic [ref=e482]: 🎯
+            - heading "Гибкость без потери качества" [level=3] [ref=e483]
+            - list [ref=e484]:
+              - listitem [ref=e485]: → Меняем бизнес-логику быстро
+              - listitem [ref=e486]: → Процессы и права без переработки
+              - listitem [ref=e487]: → Технологический стек расширяется
+      - generic [ref=e490]:
+        - heading "Попробуйте платформу" [level=2] [ref=e491]
+        - paragraph [ref=e492]: Получите демо-доступ и оцените возможности
+        - link "Запросить демо" [ref=e493] [cursor=pointer]:
+          - /url: /contact
+  - contentinfo [ref=e494]:
+    - generic [ref=e496]:
+      - generic [ref=e497]:
+        - generic [ref=e498]:
+          - heading "TechSolutions" [level=3] [ref=e499]
+          - paragraph [ref=e500]: Создаем веб-системы, которые решают ваши задачи. От аналитики до поддержки.
+          - generic [ref=e501]:
+            - link "Telegram" [ref=e502] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e503]
+            - link "GitHub" [ref=e505] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e506]
+            - link "LinkedIn" [ref=e508] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e509]
+        - generic [ref=e511]:
+          - heading "Услуги" [level=4] [ref=e512]
+          - list [ref=e513]:
+            - listitem [ref=e514]:
+              - link "Аналитика" [ref=e515] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e516]:
+              - link "Дизайн" [ref=e517] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e518]:
+              - link "Разработка" [ref=e519] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e520]:
+              - link "Тестирование" [ref=e521] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e522]:
+              - link "DevOps" [ref=e523] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e524]:
+              - link "Поддержка" [ref=e525] [cursor=pointer]:
+                - /url: /services
+        - generic [ref=e526]:
+          - heading "Технологии" [level=4] [ref=e527]
+          - list [ref=e528]:
+            - listitem [ref=e529]:
+              - link "Малый бизнес" [ref=e530] [cursor=pointer]:
+                - /url: /technologies
+            - listitem [ref=e531]:
+              - link "Средний бизнес" [ref=e532] [cursor=pointer]:
+                - /url: /technologies
+            - listitem [ref=e533]:
+              - link "Enterprise" [ref=e534] [cursor=pointer]:
+                - /url: /technologies
+            - listitem [ref=e535]:
+              - link "Платформа" [ref=e536] [cursor=pointer]:
+                - /url: /platform
+        - generic [ref=e537]:
+          - heading "Компания" [level=4] [ref=e538]
+          - list [ref=e539]:
+            - listitem [ref=e540]:
+              - link "Кейсы" [ref=e541] [cursor=pointer]:
+                - /url: /cases
+            - listitem [ref=e542]:
+              - link "Сотрудничество" [ref=e543] [cursor=pointer]:
+                - /url: /cooperation
+            - listitem [ref=e544]:
+              - link "Контакты" [ref=e545] [cursor=pointer]:
+                - /url: /contact
+      - generic [ref=e546]:
+        - paragraph [ref=e547]: © 2025 TechSolutions. Все права защищены.
+        - generic [ref=e548]:
+          - link "Политика конфиденциальности" [ref=e549] [cursor=pointer]:
+            - /url: "#"
+          - link "Условия использования" [ref=e550] [cursor=pointer]:
+            - /url: "#"
+```

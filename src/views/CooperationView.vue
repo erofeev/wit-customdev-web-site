@@ -7,8 +7,23 @@
       </div>
     </section>
 
+    <!-- Process Section -->
     <section class="section">
       <div class="container">
+        <h2 class="section-title text-center">Как мы работаем</h2>
+        <p class="section-subtitle text-center">
+          Прозрачный процесс от аналитики до запуска
+        </p>
+        <ProcessDiagram />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center">Выберите модель сотрудничества</h2>
+        <p class="section-subtitle text-center" style="margin-bottom: var(--spacing-3xl)">
+          Разные форматы работы под разные потребности бизнеса
+        </p>
         <div class="models-grid">
           <div v-for="(model, index) in models" :key="index" class="model-card card-glass">
             <div class="model-badge">{{ model.badge }}</div>
@@ -60,6 +75,7 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import ProcessDiagram from '@/components/ProcessDiagram.vue'
 
 const models = [
   {

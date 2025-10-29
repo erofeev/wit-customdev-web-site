@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Architecture Diagram', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3002/platform');
+    await page.goto('/platform');
     await page.waitForLoadState('networkidle');
   });
 
