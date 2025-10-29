@@ -2,7 +2,7 @@
   <div class="architecture-diagram">
     <div class="diagram-container">
       <svg
-        viewBox="0 0 1000 800"
+        viewBox="0 0 1600 1200"
         xmlns="http://www.w3.org/2000/svg"
         class="diagram-svg"
       >
@@ -15,6 +15,12 @@
             <stop offset="100%" style="stop-color:#00D9FF;stop-opacity:0" />
           </linearGradient>
 
+          <!-- Градиент для микросервисов -->
+          <linearGradient id="microserviceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.2" />
+            <stop offset="100%" style="stop-color:#EF4444;stop-opacity:0.1" />
+          </linearGradient>
+
           <!-- Фильтр свечения -->
           <filter id="glow">
             <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -23,224 +29,576 @@
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
+
+          <!-- Тень для контейнеров -->
+          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+          </filter>
         </defs>
 
+        <!-- Контейнер инфраструктуры (серый фон) -->
+        <rect x="100" y="200" width="1400" height="780" rx="12"
+              fill="rgba(15, 23, 42, 0.3)"
+              stroke="rgba(148, 163, 184, 0.3)"
+              stroke-width="2"
+              stroke-dasharray="10,5"/>
+
         <!-- Линии связей (рисуем сначала, чтобы были под кубиками) -->
-        <!-- Frontend -> API Gateway -->
-        <g class="connection" :class="{ active: activeNode === 'frontend' || activeNode === 'gateway' }">
-          <line x1="500" y1="120" x2="500" y2="220" stroke="#0A84FF" stroke-width="2" opacity="0.3"/>
-          <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="2s" repeatCount="indefinite" path="M500,120 L500,220" />
+        <!-- Internet -> Traefik -->
+        <g class="connection">
+          <line x1="800" y1="80" x2="800" y2="150" stroke="#00D9FF" stroke-width="2" opacity="0.4"/>
+          <circle class="pulse" r="4" fill="#00D9FF">
+            <animateMotion dur="2s" repeatCount="indefinite" path="M800,80 L800,150" />
           </circle>
         </g>
 
-        <!-- API Gateway -> Assets Service -->
-        <g class="connection" :class="{ active: activeNode === 'gateway' || activeNode === 'assets' }">
-          <line x1="450" y1="280" x2="300" y2="380" stroke="#10B981" stroke-width="2" opacity="0.3"/>
+        <!-- Traefik -> Nginx #1 -->
+        <g class="connection">
+          <line x1="700" y1="200" x2="230" y2="260" stroke="#10B981" stroke-width="2" opacity="0.3"/>
           <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path="M450,280 L300,380" />
+            <animateMotion dur="2.5s" repeatCount="indefinite" path="M700,200 L230,260" />
           </circle>
         </g>
 
-        <!-- API Gateway -> BPM Hub -->
-        <g class="connection" :class="{ active: activeNode === 'gateway' || activeNode === 'bpm' }">
-          <line x1="550" y1="280" x2="700" y2="380" stroke="#10B981" stroke-width="2" opacity="0.3"/>
+        <!-- Traefik -> Nginx #2 -->
+        <g class="connection">
+          <line x1="720" y1="210" x2="230" y2="365" stroke="#10B981" stroke-width="2" opacity="0.3"/>
           <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="2.2s" repeatCount="indefinite" path="M550,280 L700,380" />
+            <animateMotion dur="2.7s" repeatCount="indefinite" path="M720,210 L230,365" />
           </circle>
         </g>
 
-        <!-- Assets -> Microservices -->
-        <g class="connection" :class="{ active: activeNode === 'assets' || activeNode === 'microservices' }">
-          <line x1="300" y1="440" x2="400" y2="520" stroke="#F59E0B" stroke-width="2" opacity="0.3"/>
+        <!-- Traefik -> API Gateway -->
+        <g class="connection">
+          <line x1="800" y1="210" x2="800" y2="350" stroke="#10B981" stroke-width="2" opacity="0.3"/>
           <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="1.8s" repeatCount="indefinite" path="M300,440 L400,520" />
+            <animateMotion dur="2s" repeatCount="indefinite" path="M800,210 L800,350" />
           </circle>
         </g>
 
-        <!-- BPM -> Microservices -->
-        <g class="connection" :class="{ active: activeNode === 'bpm' || activeNode === 'microservices' }">
-          <line x1="700" y1="440" x2="600" y2="520" stroke="#F59E0B" stroke-width="2" opacity="0.3"/>
-          <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="2.1s" repeatCount="indefinite" path="M700,440 L600,520" />
+        <!-- NATS connections to microservices -->
+        <g class="connection">
+          <line x1="400" y1="420" x2="350" y2="500" stroke="#3B82F6" stroke-width="1.5" opacity="0.3" stroke-dasharray="5,5"/>
+          <circle class="pulse" r="3" fill="#3B82F6">
+            <animateMotion dur="1.8s" repeatCount="indefinite" path="M400,420 L350,500" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="400" y1="420" x2="650" y2="500" stroke="#3B82F6" stroke-width="1.5" opacity="0.3" stroke-dasharray="5,5"/>
+          <circle class="pulse" r="3" fill="#3B82F6">
+            <animateMotion dur="1.9s" repeatCount="indefinite" path="M400,420 L650,500" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="400" y1="420" x2="950" y2="500" stroke="#3B82F6" stroke-width="1.5" opacity="0.3" stroke-dasharray="5,5"/>
+          <circle class="pulse" r="3" fill="#3B82F6">
+            <animateMotion dur="2.1s" repeatCount="indefinite" path="M400,420 L950,500" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="400" y1="420" x2="1250" y2="500" stroke="#3B82F6" stroke-width="1.5" opacity="0.3" stroke-dasharray="5,5"/>
+          <circle class="pulse" r="3" fill="#3B82F6">
+            <animateMotion dur="2.3s" repeatCount="indefinite" path="M400,420 L1250,500" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="410" y1="430" x2="1380" y2="530" stroke="#3B82F6" stroke-width="1.5" opacity="0.3" stroke-dasharray="5,5"/>
+          <circle class="pulse" r="3" fill="#3B82F6">
+            <animateMotion dur="2.4s" repeatCount="indefinite" path="M410,430 L1380,530" />
           </circle>
         </g>
 
-        <!-- Microservices -> DGraph -->
-        <g class="connection" :class="{ active: activeNode === 'microservices' || activeNode === 'dgraph' }">
-          <line x1="500" y1="580" x2="500" y2="660" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
-          <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="1.5s" repeatCount="indefinite" path="M500,580 L500,660" />
+        <!-- API Gateway -> Microservices -->
+        <g class="connection">
+          <line x1="750" y1="420" x2="350" y2="500" stroke="#F59E0B" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#F59E0B">
+            <animateMotion dur="1.6s" repeatCount="indefinite" path="M750,420 L350,500" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="800" y1="420" x2="650" y2="500" stroke="#F59E0B" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#F59E0B">
+            <animateMotion dur="1.5s" repeatCount="indefinite" path="M800,420 L650,500" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="820" y1="420" x2="950" y2="500" stroke="#F59E0B" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#F59E0B">
+            <animateMotion dur="1.7s" repeatCount="indefinite" path="M820,420 L950,500" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="850" y1="420" x2="1250" y2="500" stroke="#F59E0B" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#F59E0B">
+            <animateMotion dur="1.8s" repeatCount="indefinite" path="M850,420 L1250,500" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="870" y1="420" x2="1380" y2="530" stroke="#F59E0B" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#F59E0B">
+            <animateMotion dur="1.9s" repeatCount="indefinite" path="M870,420 L1380,530" />
           </circle>
         </g>
 
-        <!-- Microservices -> Redis (cache) -->
-        <g class="connection" :class="{ active: activeNode === 'microservices' || activeNode === 'redis' }">
-          <line x1="450" y1="550" x2="200" y2="550" stroke="#EF4444" stroke-width="2" opacity="0.3" stroke-dasharray="5,5"/>
-          <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="1.3s" repeatCount="indefinite" path="M450,550 L200,550" />
+        <!-- Microservices -> Dgraph -->
+        <g class="connection">
+          <line x1="350" y1="620" x2="950" y2="750" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#8B5CF6">
+            <animateMotion dur="2s" repeatCount="indefinite" path="M350,620 L950,750" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="650" y1="620" x2="950" y2="750" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#8B5CF6">
+            <animateMotion dur="1.8s" repeatCount="indefinite" path="M650,620 L950,750" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="950" y1="620" x2="950" y2="750" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#8B5CF6">
+            <animateMotion dur="1.5s" repeatCount="indefinite" path="M950,620 L950,750" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="1250" y1="620" x2="1100" y2="750" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#8B5CF6">
+            <animateMotion dur="1.7s" repeatCount="indefinite" path="M1250,620 L1100,750" />
+          </circle>
+        </g>
+        <g class="connection">
+          <line x1="1380" y1="630" x2="1100" y2="760" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
+          <circle class="pulse" r="4" fill="#8B5CF6">
+            <animateMotion dur="1.9s" repeatCount="indefinite" path="M1380,630 L1100,760" />
           </circle>
         </g>
 
-        <!-- Microservices -> Elasticsearch (search) -->
-        <g class="connection" :class="{ active: activeNode === 'microservices' || activeNode === 'elasticsearch' }">
-          <line x1="550" y1="550" x2="800" y2="550" stroke="#3B82F6" stroke-width="2" opacity="0.3" stroke-dasharray="5,5"/>
-          <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="1.7s" repeatCount="indefinite" path="M550,550 L800,550" />
+        <!-- Dgraph Zero <-> Alpha -->
+        <g class="connection">
+          <line x1="1020" y1="800" x2="1120" y2="800" stroke="#8B5CF6" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+          <circle class="pulse" r="4" fill="#8B5CF6">
+            <animateMotion dur="1.2s" repeatCount="indefinite" path="M1020,800 L1120,800" />
           </circle>
+          <text x="1070" y="790" fill="#8B5CF6" font-size="10" text-anchor="middle">replication</text>
+        </g>
+
+        <!-- Infrastructure connections (dashed, lighter) -->
+        <g class="connection">
+          <line x1="350" y1="620" x2="250" y2="1000" stroke="#94A3B8" stroke-width="1" opacity="0.2" stroke-dasharray="3,3"/>
+          <line x1="650" y1="620" x2="450" y2="1000" stroke="#94A3B8" stroke-width="1" opacity="0.2" stroke-dasharray="3,3"/>
+          <line x1="950" y1="620" x2="650" y2="1000" stroke="#94A3B8" stroke-width="1" opacity="0.2" stroke-dasharray="3,3"/>
         </g>
 
         <!-- Сервисы (кубики) -->
 
-        <!-- Frontend -->
-        <g
-          class="service-node"
-          :class="{ active: activeNode === 'frontend', hoverable: true }"
-          @mouseenter="activeNode = 'frontend'"
-          @mouseleave="activeNode = null"
-        >
-          <rect x="400" y="50" width="200" height="70" rx="8"
-                fill="rgba(10, 132, 255, 0.1)"
-                stroke="#0A84FF"
-                stroke-width="2"
-                filter="url(#glow)"/>
-          <text x="500" y="78" text-anchor="middle" fill="#0A84FF" font-weight="600" font-size="16">Frontend</text>
-          <text x="500" y="98" text-anchor="middle" fill="#94A3B8" font-size="12">Angular / React / Vue</text>
+        <!-- Internet / User -->
+        <g class="service-node">
+          <circle cx="800" cy="50" r="30" fill="rgba(0, 217, 255, 0.15)" stroke="#00D9FF" stroke-width="2"/>
+          <text x="800" y="30" text-anchor="middle" fill="#00D9FF" font-size="12">👤</text>
+          <text x="800" y="55" text-anchor="middle" fill="#00D9FF" font-weight="600" font-size="14">Internet</text>
+          <text x="800" y="95" text-anchor="middle" fill="#94A3B8" font-size="10">User Devices</text>
         </g>
 
-        <!-- API Gateway -->
+        <!-- Traefik (On-premise Gateway) -->
         <g
           class="service-node"
+          :class="{ active: activeNode === 'traefik', hoverable: true }"
+          @mouseenter="activeNode = 'traefik'"
+          @mouseleave="activeNode = null"
+        >
+          <rect x="650" y="150" width="300" height="70" rx="8"
+                fill="rgba(236, 72, 153, 0.15)"
+                stroke="#EC4899"
+                stroke-width="2"
+                filter="url(#glow)"/>
+          <text x="800" y="178" text-anchor="middle" fill="#EC4899" font-weight="700" font-size="16">Traefik</text>
+          <text x="800" y="198" text-anchor="middle" fill="#94A3B8" font-size="12">On-premise Gateway / Reverse Proxy</text>
+        </g>
+
+        <!-- Nginx + Frontend - Instance 1 -->
+        <g
+          class="service-node"
+          :class="{ active: activeNode === 'nginx1', hoverable: true }"
+          @mouseenter="activeNode = 'nginx1'"
+          @mouseleave="activeNode = null"
+        >
+          <rect x="130" y="240" width="120" height="90" rx="8"
+                fill="rgba(34, 197, 94, 0.15)"
+                stroke="#22C55E"
+                stroke-width="2"
+                filter="url(#glow)"/>
+          <text x="190" y="262" text-anchor="middle" fill="#22C55E" font-weight="600" font-size="13">Nginx #1</text>
+          <line x1="138" y1="270" x2="242" y2="270" stroke="#22C55E" stroke-width="1" opacity="0.3"/>
+          <!-- Frontend внутри -->
+          <rect x="142" y="278" width="96" height="42" rx="5"
+                fill="rgba(10, 132, 255, 0.2)"
+                stroke="#0A84FF"
+                stroke-width="1.5"/>
+          <text x="190" y="297" text-anchor="middle" fill="#0A84FF" font-weight="600" font-size="12">Frontend</text>
+          <text x="190" y="311" text-anchor="middle" fill="#94A3B8" font-size="9">Vue/React</text>
+        </g>
+
+        <!-- Nginx + Frontend - Instance 2 -->
+        <g
+          class="service-node"
+          :class="{ active: activeNode === 'nginx2', hoverable: true }"
+          @mouseenter="activeNode = 'nginx2'"
+          @mouseleave="activeNode = null"
+        >
+          <rect x="130" y="345" width="120" height="90" rx="8"
+                fill="rgba(34, 197, 94, 0.15)"
+                stroke="#22C55E"
+                stroke-width="2"
+                filter="url(#glow)"/>
+          <text x="190" y="367" text-anchor="middle" fill="#22C55E" font-weight="600" font-size="13">Nginx #2</text>
+          <line x1="138" y1="375" x2="242" y2="375" stroke="#22C55E" stroke-width="1" opacity="0.3"/>
+          <!-- Frontend внутри -->
+          <rect x="142" y="383" width="96" height="42" rx="5"
+                fill="rgba(10, 132, 255, 0.2)"
+                stroke="#0A84FF"
+                stroke-width="1.5"/>
+          <text x="190" y="402" text-anchor="middle" fill="#0A84FF" font-weight="600" font-size="12">Frontend</text>
+          <text x="190" y="416" text-anchor="middle" fill="#94A3B8" font-size="9">Vue/React</text>
+        </g>
+
+        <!-- Scaling indicator -->
+        <text x="190" y="455" text-anchor="middle" fill="#22C55E" font-size="11" font-weight="600">⬍ Scalable ⬍</text>
+        <text x="190" y="468" text-anchor="middle" fill="#94A3B8" font-size="9">Load Balanced</text>
+
+        <!-- NATS Message Broker (круг) -->
+        <g
+          class="service-node"
+          :class="{ active: activeNode === 'nats', hoverable: true }"
+          @mouseenter="activeNode = 'nats'"
+          @mouseleave="activeNode = null"
+        >
+          <circle cx="400" cy="390" r="50" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6" stroke-width="3" filter="url(#glow)"/>
+          <text x="400" y="385" text-anchor="middle" fill="#3B82F6" font-weight="700" font-size="16">NATS</text>
+          <text x="400" y="405" text-anchor="middle" fill="#94A3B8" font-size="11">High-speed</text>
+          <text x="400" y="420" text-anchor="middle" fill="#94A3B8" font-size="11">Message Broker</text>
+        </g>
+
+        <!-- API Gateway Service (микросервис) -->
+        <g
+          class="service-node microservice"
           :class="{ active: activeNode === 'gateway', hoverable: true }"
           @mouseenter="activeNode = 'gateway'"
           @mouseleave="activeNode = null"
         >
-          <rect x="400" y="220" width="200" height="70" rx="8"
-                fill="rgba(16, 185, 129, 0.1)"
-                stroke="#10B981"
-                stroke-width="2"
-                filter="url(#glow)"/>
-          <text x="500" y="248" text-anchor="middle" fill="#10B981" font-weight="600" font-size="16">API Gateway</text>
-          <text x="500" y="268" text-anchor="middle" fill="#94A3B8" font-size="12">REST API + Auth</text>
-        </g>
-
-        <!-- Assets Service -->
-        <g
-          class="service-node"
-          :class="{ active: activeNode === 'assets', hoverable: true }"
-          @mouseenter="activeNode = 'assets'"
-          @mouseleave="activeNode = null"
-        >
-          <rect x="200" y="380" width="200" height="70" rx="8"
-                fill="rgba(245, 158, 11, 0.1)"
+          <rect x="650" y="350" width="300" height="80" rx="10"
+                fill="url(#microserviceGradient)"
                 stroke="#F59E0B"
-                stroke-width="2"
-                filter="url(#glow)"/>
-          <text x="300" y="408" text-anchor="middle" fill="#F59E0B" font-weight="600" font-size="16">Assets Service</text>
-          <text x="300" y="428" text-anchor="middle" fill="#94A3B8" font-size="12">Управление сущностями</text>
+                stroke-width="2.5"
+                filter="url(#shadow)"/>
+          <text x="800" y="375" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="15">Microservices</text>
+          <line x1="660" y1="385" x2="940" y2="385" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
+
+          <!-- Внутренние компоненты -->
+          <rect x="665" y="395" width="80" height="25" rx="4" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="705" y="411" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="600">API gateway</text>
+
+          <rect x="755" y="395" width="80" height="25" rx="4" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="795" y="405" text-anchor="middle" fill="#3B82F6" font-size="8">WWW Dev UI</text>
+          <text x="795" y="415" text-anchor="middle" fill="#3B82F6" font-size="8">Dashboard</text>
+
+          <rect x="845" y="395" width="85" height="25" rx="4" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="887" y="411" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="600">node broker</text>
         </g>
 
-        <!-- BPM Hub -->
+        <!-- User & Auth Service -->
         <g
-          class="service-node"
-          :class="{ active: activeNode === 'bpm', hoverable: true }"
-          @mouseenter="activeNode = 'bpm'"
+          class="service-node microservice"
+          :class="{ active: activeNode === 'user-auth', hoverable: true }"
+          @mouseenter="activeNode = 'user-auth'"
           @mouseleave="activeNode = null"
         >
-          <rect x="600" y="380" width="200" height="70" rx="8"
-                fill="rgba(139, 92, 246, 0.1)"
+          <rect x="200" y="500" width="300" height="130" rx="10"
+                fill="url(#microserviceGradient)"
+                stroke="#F59E0B"
+                stroke-width="2.5"
+                filter="url(#shadow)"/>
+          <text x="350" y="525" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="15">Microservices</text>
+          <line x1="210" y1="535" x2="490" y2="535" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
+
+          <rect x="215" y="545" width="55" height="25" rx="4" fill="rgba(34, 197, 94, 0.3)" stroke="#22C55E" stroke-width="1"/>
+          <text x="242" y="561" text-anchor="middle" fill="#22C55E" font-size="10" font-weight="600">User</text>
+
+          <rect x="280" y="545" width="55" height="25" rx="4" fill="rgba(236, 72, 153, 0.3)" stroke="#EC4899" stroke-width="1"/>
+          <text x="307" y="561" text-anchor="middle" fill="#EC4899" font-size="10" font-weight="600">Auth</text>
+
+          <rect x="345" y="545" width="65" height="25" rx="4" fill="rgba(139, 92, 246, 0.3)" stroke="#8B5CF6" stroke-width="1"/>
+          <text x="377" y="557" text-anchor="middle" fill="#8B5CF6" font-size="8">Dgraph</text>
+          <text x="377" y="566" text-anchor="middle" fill="#8B5CF6" font-size="8">mixin</text>
+
+          <rect x="215" y="578" width="90" height="25" rx="4" fill="rgba(34, 197, 94, 0.3)" stroke="#22C55E" stroke-width="1"/>
+          <text x="260" y="586" text-anchor="middle" fill="#22C55E" font-size="8">Roles &</text>
+          <text x="260" y="596" text-anchor="middle" fill="#22C55E" font-size="8">Permissions</text>
+
+          <rect x="315" y="578" width="90" height="25" rx="4" fill="rgba(34, 197, 94, 0.3)" stroke="#22C55E" stroke-width="1"/>
+          <text x="360" y="586" text-anchor="middle" fill="#22C55E" font-size="8">Access</text>
+          <text x="360" y="596" text-anchor="middle" fill="#22C55E" font-size="8">Groups</text>
+
+          <rect x="420" y="545" width="65" height="58" rx="4" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="452" y="557" text-anchor="middle" fill="#3B82F6" font-size="8">node</text>
+          <text x="452" y="566" text-anchor="middle" fill="#3B82F6" font-size="8">broker</text>
+        </g>
+
+        <!-- House Service -->
+        <g
+          class="service-node microservice"
+          :class="{ active: activeNode === 'house', hoverable: true }"
+          @mouseenter="activeNode = 'house'"
+          @mouseleave="activeNode = null"
+        >
+          <rect x="550" y="500" width="250" height="130" rx="10"
+                fill="url(#microserviceGradient)"
+                stroke="#F59E0B"
+                stroke-width="2.5"
+                filter="url(#shadow)"/>
+          <text x="675" y="525" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="15">Microservices</text>
+          <line x1="560" y1="535" x2="790" y2="535" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
+
+          <rect x="565" y="545" width="65" height="25" rx="4" fill="rgba(139, 92, 246, 0.3)" stroke="#8B5CF6" stroke-width="1"/>
+          <text x="597" y="561" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="600">House</text>
+
+          <rect x="640" y="545" width="65" height="25" rx="4" fill="rgba(139, 92, 246, 0.3)" stroke="#8B5CF6" stroke-width="1"/>
+          <text x="672" y="557" text-anchor="middle" fill="#8B5CF6" font-size="8">Dgraph</text>
+          <text x="672" y="566" text-anchor="middle" fill="#8B5CF6" font-size="8">mixin</text>
+
+          <rect x="715" y="545" width="65" height="58" rx="4" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="747" y="557" text-anchor="middle" fill="#3B82F6" font-size="8">node</text>
+          <text x="747" y="566" text-anchor="middle" fill="#3B82F6" font-size="8">broker</text>
+        </g>
+
+        <!-- Dictionaries Service -->
+        <g
+          class="service-node microservice"
+          :class="{ active: activeNode === 'dictionaries', hoverable: true }"
+          @mouseenter="activeNode = 'dictionaries'"
+          @mouseleave="activeNode = null"
+        >
+          <rect x="850" y="500" width="250" height="130" rx="10"
+                fill="url(#microserviceGradient)"
+                stroke="#F59E0B"
+                stroke-width="2.5"
+                filter="url(#shadow)"/>
+          <text x="975" y="525" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="15">Microservices</text>
+          <line x1="860" y1="535" x2="1090" y2="535" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
+
+          <rect x="865" y="545" width="80" height="25" rx="4" fill="rgba(168, 85, 247, 0.3)" stroke="#A855F7" stroke-width="1"/>
+          <text x="905" y="561" text-anchor="middle" fill="#A855F7" font-size="10" font-weight="600">Dictionaries</text>
+
+          <rect x="955" y="545" width="65" height="25" rx="4" fill="rgba(139, 92, 246, 0.3)" stroke="#8B5CF6" stroke-width="1"/>
+          <text x="987" y="557" text-anchor="middle" fill="#8B5CF6" font-size="8">Dgraph</text>
+          <text x="987" y="566" text-anchor="middle" fill="#8B5CF6" font-size="8">mixin</text>
+
+          <rect x="1030" y="545" width="55" height="58" rx="4" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="1057" y="557" text-anchor="middle" fill="#3B82F6" font-size="8">node</text>
+          <text x="1057" y="566" text-anchor="middle" fill="#3B82F6" font-size="8">broker</text>
+        </g>
+
+        <!-- Events/Notifications Service -->
+        <g
+          class="service-node microservice"
+          :class="{ active: activeNode === 'events', hoverable: true }"
+          @mouseenter="activeNode = 'events'"
+          @mouseleave="activeNode = null"
+        >
+          <rect x="1150" y="500" width="280" height="140" rx="10"
+                fill="url(#microserviceGradient)"
+                stroke="#F59E0B"
+                stroke-width="2.5"
+                filter="url(#shadow)"/>
+          <text x="1290" y="525" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="15">Microservices</text>
+          <line x1="1160" y1="535" x2="1420" y2="535" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
+
+          <rect x="1165" y="545" width="65" height="25" rx="4" fill="rgba(245, 158, 11, 0.3)" stroke="#F59E0B" stroke-width="1"/>
+          <text x="1197" y="561" text-anchor="middle" fill="#F59E0B" font-size="10" font-weight="600">Events</text>
+
+          <rect x="1240" y="545" width="75" height="25" rx="4" fill="rgba(236, 72, 153, 0.3)" stroke="#EC4899" stroke-width="1"/>
+          <text x="1277" y="561" text-anchor="middle" fill="#EC4899" font-size="10" font-weight="600">Notifications</text>
+
+          <rect x="1325" y="545" width="65" height="25" rx="4" fill="rgba(139, 92, 246, 0.3)" stroke="#8B5CF6" stroke-width="1"/>
+          <text x="1357" y="557" text-anchor="middle" fill="#8B5CF6" font-size="8">Dgraph</text>
+          <text x="1357" y="566" text-anchor="middle" fill="#8B5CF6" font-size="8">mixin</text>
+
+          <rect x="1165" y="578" width="100" height="25" rx="4" fill="rgba(52, 211, 153, 0.3)" stroke="#34D399" stroke-width="1"/>
+          <text x="1215" y="594" text-anchor="middle" fill="#34D399" font-size="10" font-weight="600">Email Queue</text>
+
+          <rect x="1275" y="578" width="50" height="25" rx="4" fill="rgba(251, 146, 60, 0.3)" stroke="#FB923C" stroke-width="1"/>
+          <text x="1300" y="594" text-anchor="middle" fill="#FB923C" font-size="10" font-weight="600">Push</text>
+
+          <rect x="1335" y="578" width="55" height="58" rx="4" fill="rgba(59, 130, 246, 0.3)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="1362" y="590" text-anchor="middle" fill="#3B82F6" font-size="8">node</text>
+          <text x="1362" y="599" text-anchor="middle" fill="#3B82F6" font-size="8">broker</text>
+        </g>
+
+        <!-- Dgraph Zero (Database) -->
+        <g
+          class="service-node database"
+          :class="{ active: activeNode === 'dgraph-zero', hoverable: true }"
+          @mouseenter="activeNode = 'dgraph-zero'"
+          @mouseleave="activeNode = null"
+        >
+          <rect x="850" y="750" width="160" height="90" rx="10"
+                fill="rgba(139, 92, 246, 0.2)"
                 stroke="#8B5CF6"
-                stroke-width="2"
-                filter="url(#glow)"/>
-          <text x="700" y="408" text-anchor="middle" fill="#8B5CF6" font-weight="600" font-size="16">BPM Hub</text>
-          <text x="700" y="428" text-anchor="middle" fill="#94A3B8" font-size="12">Бизнес-процессы</text>
+                stroke-width="2.5"
+                filter="url(#shadow)"/>
+          <text x="930" y="775" text-anchor="middle" fill="#8B5CF6" font-weight="700" font-size="14">DB</text>
+          <line x1="860" y1="785" x2="1000" y2="785" stroke="#8B5CF6" stroke-width="1" opacity="0.3"/>
+          <text x="930" y="805" text-anchor="middle" fill="#8B5CF6" font-weight="600" font-size="13">Dgraph Zero</text>
+          <text x="930" y="825" text-anchor="middle" fill="#94A3B8" font-size="10">Cluster Manager</text>
         </g>
 
-        <!-- Microservices Framework -->
+        <!-- Dgraph Alpha (Database) -->
         <g
-          class="service-node"
-          :class="{ active: activeNode === 'microservices', hoverable: true }"
-          @mouseenter="activeNode = 'microservices'"
+          class="service-node database"
+          :class="{ active: activeNode === 'dgraph-alpha', hoverable: true }"
+          @mouseenter="activeNode = 'dgraph-alpha'"
           @mouseleave="activeNode = null"
         >
-          <rect x="350" y="520" width="300" height="70" rx="8"
-                fill="rgba(0, 217, 255, 0.1)"
-                stroke="#00D9FF"
-                stroke-width="2"
-                filter="url(#glow)"/>
-          <text x="500" y="548" text-anchor="middle" fill="#00D9FF" font-weight="600" font-size="16">Микросервисный фреймворк</text>
-          <text x="500" y="568" text-anchor="middle" fill="#94A3B8" font-size="12">Discovery • Load Balancing • Circuit Breaker</text>
-        </g>
-
-        <!-- DGraph Database -->
-        <g
-          class="service-node"
-          :class="{ active: activeNode === 'dgraph', hoverable: true }"
-          @mouseenter="activeNode = 'dgraph'"
-          @mouseleave="activeNode = null"
-        >
-          <rect x="350" y="660" width="300" height="70" rx="8"
-                fill="rgba(139, 92, 246, 0.1)"
+          <rect x="1030" y="750" width="160" height="90" rx="10"
+                fill="rgba(139, 92, 246, 0.2)"
                 stroke="#8B5CF6"
-                stroke-width="2"
-                filter="url(#glow)"/>
-          <text x="500" y="688" text-anchor="middle" fill="#8B5CF6" font-weight="600" font-size="16">Графовая БД (DGraph)</text>
-          <text x="500" y="708" text-anchor="middle" fill="#94A3B8" font-size="12">Сложные связи • Runtime schema</text>
+                stroke-width="2.5"
+                filter="url(#shadow)"/>
+          <text x="1110" y="775" text-anchor="middle" fill="#8B5CF6" font-weight="700" font-size="14">DB</text>
+          <line x1="1040" y1="785" x2="1180" y2="785" stroke="#8B5CF6" stroke-width="1" opacity="0.3"/>
+          <text x="1110" y="805" text-anchor="middle" fill="#8B5CF6" font-weight="600" font-size="13">Dgraph Alpha</text>
+          <text x="1110" y="825" text-anchor="middle" fill="#94A3B8" font-size="10">Data Storage</text>
         </g>
 
-        <!-- Redis (side) -->
-        <g
-          class="service-node side-service"
-          :class="{ active: activeNode === 'redis', hoverable: true }"
-          @mouseenter="activeNode = 'redis'"
-          @mouseleave="activeNode = null"
-        >
-          <rect x="50" y="520" width="150" height="60" rx="8"
+        <!-- Другие БД (примеры) - показываем возможность подключения -->
+        <g class="service-node database" opacity="0.5">
+          <rect x="1220" y="750" width="120" height="40" rx="6"
                 fill="rgba(239, 68, 68, 0.1)"
                 stroke="#EF4444"
-                stroke-width="2"
-                filter="url(#glow)"/>
-          <text x="125" y="545" text-anchor="middle" fill="#EF4444" font-weight="600" font-size="14">Redis</text>
-          <text x="125" y="563" text-anchor="middle" fill="#94A3B8" font-size="11">Cache</text>
+                stroke-width="1.5"
+                stroke-dasharray="5,5"/>
+          <text x="1280" y="775" text-anchor="middle" fill="#EF4444" font-size="11" font-weight="600">PostgreSQL</text>
         </g>
 
-        <!-- Elasticsearch (side) -->
-        <g
-          class="service-node side-service"
-          :class="{ active: activeNode === 'elasticsearch', hoverable: true }"
-          @mouseenter="activeNode = 'elasticsearch'"
-          @mouseleave="activeNode = null"
-        >
-          <rect x="800" y="520" width="150" height="60" rx="8"
-                fill="rgba(59, 130, 246, 0.1)"
+        <g class="service-node database" opacity="0.5">
+          <rect x="1220" y="800" width="120" height="40" rx="6"
+                fill="rgba(234, 179, 8, 0.1)"
+                stroke="#EAB308"
+                stroke-width="1.5"
+                stroke-dasharray="5,5"/>
+          <text x="1280" y="825" text-anchor="middle" fill="#EAB308" font-size="11" font-weight="600">MongoDB</text>
+        </g>
+
+        <text x="1280" y="860" text-anchor="middle" fill="#94A3B8" font-size="9" opacity="0.7">+ другие БД...</text>
+
+        <!-- ========= INFRASTRUCTURE LAYER ========= -->
+        <text x="800" y="920" text-anchor="middle" fill="#94A3B8" font-size="13" font-weight="600" opacity="0.6">
+          ─── Infrastructure & Observability ───
+        </text>
+
+        <!-- Log Storage (Elasticsearch) -->
+        <g class="service-node infra-service">
+          <rect x="150" y="950" width="130" height="70" rx="8"
+                fill="rgba(147, 51, 234, 0.15)"
+                stroke="#9333EA"
+                stroke-width="2"/>
+          <text x="215" y="975" text-anchor="middle" fill="#9333EA" font-weight="600" font-size="12">Log Storage</text>
+          <text x="215" y="995" text-anchor="middle" fill="#94A3B8" font-size="10">(Elasticsearch)</text>
+        </g>
+
+        <!-- Log Analytic (Kibana) -->
+        <g class="service-node infra-service">
+          <rect x="300" y="950" width="130" height="70" rx="8"
+                fill="rgba(236, 72, 153, 0.15)"
+                stroke="#EC4899"
+                stroke-width="2"/>
+          <text x="365" y="975" text-anchor="middle" fill="#EC4899" font-weight="600" font-size="12">Log Analytic</text>
+          <text x="365" y="995" text-anchor="middle" fill="#94A3B8" font-size="10">(Kibana)</text>
+        </g>
+
+        <!-- Log Storage (PostgreSQL) -->
+        <g class="service-node infra-service">
+          <rect x="450" y="950" width="130" height="70" rx="8"
+                fill="rgba(59, 130, 246, 0.15)"
                 stroke="#3B82F6"
-                stroke-width="2"
-                filter="url(#glow)"/>
-          <text x="875" y="545" text-anchor="middle" fill="#3B82F6" font-weight="600" font-size="14">Elasticsearch</text>
-          <text x="875" y="563" text-anchor="middle" fill="#94A3B8" font-size="11">Search</text>
+                stroke-width="2"/>
+          <text x="515" y="975" text-anchor="middle" fill="#3B82F6" font-weight="600" font-size="12">Log Storage</text>
+          <text x="515" y="995" text-anchor="middle" fill="#94A3B8" font-size="10">(PostgreSQL)</text>
+        </g>
+
+        <!-- Monitoring (Dozzle) -->
+        <g class="service-node infra-service">
+          <rect x="600" y="950" width="130" height="70" rx="8"
+                fill="rgba(245, 158, 11, 0.15)"
+                stroke="#F59E0B"
+                stroke-width="2"/>
+          <text x="665" y="975" text-anchor="middle" fill="#F59E0B" font-weight="600" font-size="12">Monitoring</text>
+          <text x="665" y="990" text-anchor="middle" fill="#94A3B8" font-size="10">(Dozzle)</text>
+          <text x="665" y="1005" text-anchor="middle" fill="#94A3B8" font-size="9">Docker logs</text>
+        </g>
+
+        <!-- Metrics (Grafana) -->
+        <g class="service-node infra-service">
+          <rect x="750" y="950" width="130" height="70" rx="8"
+                fill="rgba(234, 88, 12, 0.15)"
+                stroke="#EA580C"
+                stroke-width="2"/>
+          <text x="815" y="975" text-anchor="middle" fill="#EA580C" font-weight="600" font-size="12">Metrics</text>
+          <text x="815" y="995" text-anchor="middle" fill="#94A3B8" font-size="10">(Grafana)</text>
+        </g>
+
+        <!-- Traces (Jaeger) -->
+        <g class="service-node infra-service">
+          <rect x="900" y="950" width="130" height="70" rx="8"
+                fill="rgba(134, 239, 172, 0.15)"
+                stroke="#86EFAC"
+                stroke-width="2"/>
+          <text x="965" y="975" text-anchor="middle" fill="#86EFAC" font-weight="600" font-size="12">Traces</text>
+          <text x="965" y="995" text-anchor="middle" fill="#94A3B8" font-size="10">(Jaeger)</text>
+        </g>
+
+        <!-- UI Admin for Database -->
+        <g class="service-node infra-service">
+          <rect x="1050" y="950" width="140" height="70" rx="8"
+                fill="rgba(168, 85, 247, 0.15)"
+                stroke="#A855F7"
+                stroke-width="2"/>
+          <text x="1120" y="975" text-anchor="middle" fill="#A855F7" font-weight="600" font-size="12">UI Admin</text>
+          <text x="1120" y="995" text-anchor="middle" fill="#94A3B8" font-size="10">for Database</text>
         </g>
 
         <!-- Легенда -->
-        <g class="legend" transform="translate(50, 20)">
+        <g class="legend" transform="translate(120, 1070)">
           <text x="0" y="0" fill="#94A3B8" font-size="12" font-weight="600">Типы связей:</text>
-          <line x1="0" y1="15" x2="30" y2="15" stroke="#0A84FF" stroke-width="2"/>
-          <text x="35" y="18" fill="#94A3B8" font-size="11">REST API</text>
 
-          <line x1="0" y1="30" x2="30" y2="30" stroke="#10B981" stroke-width="2"/>
-          <text x="35" y="33" fill="#94A3B8" font-size="11">Events</text>
+          <line x1="0" y1="20" x2="35" y2="20" stroke="#00D9FF" stroke-width="2"/>
+          <text x="42" y="24" fill="#94A3B8" font-size="11">Internet</text>
 
-          <line x1="0" y1="45" x2="30" y2="45" stroke="#8B5CF6" stroke-width="2"/>
-          <text x="35" y="48" fill="#94A3B8" font-size="11">Database</text>
+          <line x1="110" y1="20" x2="145" y2="20" stroke="#10B981" stroke-width="2"/>
+          <text x="152" y="24" fill="#94A3B8" font-size="11">HTTP/Gateway</text>
 
-          <line x1="0" y1="60" x2="30" y2="60" stroke="#EF4444" stroke-width="2" stroke-dasharray="5,5"/>
-          <text x="35" y="63" fill="#94A3B8" font-size="11">Cache/Search</text>
+          <line x1="260" y1="20" x2="295" y2="20" stroke="#F59E0B" stroke-width="2"/>
+          <text x="302" y="24" fill="#94A3B8" font-size="11">Microservices</text>
+
+          <line x1="420" y1="20" x2="455" y2="20" stroke="#3B82F6" stroke-width="2" stroke-dasharray="5,5"/>
+          <text x="462" y="24" fill="#94A3B8" font-size="11">Message Broker</text>
+
+          <line x1="600" y1="20" x2="635" y2="20" stroke="#8B5CF6" stroke-width="2"/>
+          <text x="642" y="24" fill="#94A3B8" font-size="11">Database</text>
+
+          <line x1="730" y1="20" x2="765" y2="20" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+          <text x="772" y="24" fill="#94A3B8" font-size="11">Observability</text>
+
+          <rect x="880" y="12" width="16" height="16" rx="3" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <text x="903" y="24" fill="#94A3B8" font-size="11">Опционально</text>
         </g>
       </svg>
     </div>
 
     <div class="diagram-info">
       <p class="info-text">
-        Наведите на компонент, чтобы увидеть его связи
+        Полная архитектура микросервисной платформы с инфраструктурой наблюдения и мониторинга
+      </p>
+      <p class="info-subtext">
+        Наведите на компоненты для интерактивного взаимодействия
       </p>
     </div>
   </div>
@@ -349,6 +707,37 @@ const activeNode = ref<string | null>(null)
   opacity: 1;
 }
 
+/* Микросервисы */
+.microservice rect {
+  transition: all var(--transition-base);
+}
+
+.microservice:hover rect,
+.microservice.active rect {
+  filter: drop-shadow(0 4px 16px rgba(245, 158, 11, 0.4));
+}
+
+/* Базы данных */
+.database rect {
+  transition: all var(--transition-base);
+}
+
+.database:hover rect,
+.database.active rect {
+  filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.4));
+}
+
+/* Инфраструктурные сервисы */
+.infra-service {
+  opacity: 0.85;
+  transition: all var(--transition-base);
+}
+
+.infra-service:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
 /* Легенда */
 .legend text {
   font-family: var(--font-family-primary);
@@ -367,6 +756,13 @@ const activeNode = ref<string | null>(null)
 }
 
 .info-text {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  margin: 0 0 var(--spacing-sm) 0;
+  font-weight: var(--font-weight-medium);
+}
+
+.info-subtext {
   color: var(--color-text-tertiary);
   font-size: var(--font-size-small);
   margin: 0;
