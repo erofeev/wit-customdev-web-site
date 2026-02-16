@@ -47,6 +47,7 @@
             <ul class="footer-links">
               <li><RouterLink to="/products/wonescale">WoneScale</RouterLink></li>
               <li><RouterLink to="/products/wonendr">WoneNDR</RouterLink></li>
+              <li><RouterLink to="/products/data-showcase">Data Showcase</RouterLink></li>
               <li><RouterLink to="/technologies">Технологии</RouterLink></li>
             </ul>
           </div>
@@ -57,6 +58,7 @@
             <ul class="footer-links">
               <li><RouterLink to="/cases">Кейсы</RouterLink></li>
               <li><RouterLink to="/cooperation">Сотрудничество</RouterLink></li>
+              <li><RouterLink to="/knowledge">База знаний</RouterLink></li>
               <li><RouterLink to="/contact">Контакты</RouterLink></li>
             </ul>
           </div>

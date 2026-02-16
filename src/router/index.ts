@@ -68,6 +68,30 @@ const router = createRouter({
         title: 'Контакты | WONE IT'
       }
     },
+    {
+      path: '/knowledge',
+      name: 'knowledge',
+      component: () => import('@/views/KnowledgeView.vue'),
+      meta: {
+        title: 'База знаний — Технологии и best practices | WONE IT'
+      }
+    },
+    {
+      path: '/knowledge/:slug',
+      name: 'knowledge-article',
+      component: () => import('@/views/KnowledgeArticleView.vue'),
+      meta: {
+        title: 'База знаний | WONE IT'
+      }
+    },
+    {
+      path: '/products/data-showcase',
+      name: 'data-showcase',
+      component: () => import('@/views/DataShowcaseView.vue'),
+      meta: {
+        title: 'Data Showcase — Цифровая витрина данных | WONE IT'
+      }
+    },
     // Redirects for old routes
     {
       path: '/platform',

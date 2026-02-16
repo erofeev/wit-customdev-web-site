@@ -9,6 +9,8 @@
       </RouterView>
     </main>
     <AppFooter />
+    <StickyCta />
+    <ExitIntentPopup />
   </div>
 </template>
 
@@ -16,6 +18,8 @@
 import { RouterView } from 'vue-router'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
+import StickyCta from '@/components/StickyCta.vue'
+import ExitIntentPopup from '@/components/ExitIntentPopup.vue'
 </script>
 
 <style scoped>

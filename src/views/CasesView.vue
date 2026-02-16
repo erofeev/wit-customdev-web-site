@@ -121,7 +121,7 @@ const cases = [
     client: 'МКК "Быстрозайм"',
     category: 'Fintech',
     task: 'Платформа для выдачи микрозаймов, скоринг, интеграция с БКИ, автоматизация процесса',
-    technologies: ['React', 'Java', 'Spring Boot', 'PostgreSQL', 'Kafka', 'Kubernetes'],
+    technologies: ['React', 'Java', 'Spring Boot', 'PostgreSQL', 'NATS', 'Kubernetes'],
     results: [
       'Обработка заявки < 5 минут (было 2-3 часа)',
       'Автоматическое решение в 80% случаев',

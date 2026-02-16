@@ -1,737 +1,714 @@
 <template>
-  <div class="architecture-diagram">
-    <div class="diagram-container">
-      <svg
-        viewBox="0 0 2000 1400"
-        xmlns="http://www.w3.org/2000/svg"
-        class="diagram-svg"
-      >
-        <!-- Определения для градиентов и эффектов -->
-        <defs>
-          <!-- Градиент для пульсации -->
-          <linearGradient id="pulseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#00D9FF;stop-opacity:0" />
-            <stop offset="50%" style="stop-color:#00D9FF;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#00D9FF;stop-opacity:0" />
-          </linearGradient>
-
-          <!-- Градиент для микросервисов -->
-          <linearGradient id="microserviceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.2" />
-            <stop offset="100%" style="stop-color:#EF4444;stop-opacity:0.1" />
-          </linearGradient>
-
-          <!-- Фильтр свечения -->
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-
-          <!-- Тень для контейнеров -->
-          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
-          </filter>
-        </defs>
-
-        <!-- Контейнер инфраструктуры (серый фон) -->
-        <rect x="80" y="180" width="1840" height="900" rx="16"
-              fill="rgba(15, 23, 42, 0.3)"
-              stroke="rgba(148, 163, 184, 0.3)"
-              stroke-width="3"
-              stroke-dasharray="15,8"/>
-        <text x="1000" y="210" text-anchor="middle" fill="#94A3B8" font-size="16" font-weight="600" opacity="0.7">
-          Infrastructure Container
-        </text>
-
-        <!-- ========== ЛИНИИ СВЯЗЕЙ ========== -->
-
-        <!-- Internet -> Traefik -->
-        <g class="connection">
-          <line x1="1000" y1="90" x2="1000" y2="160" stroke="#00D9FF" stroke-width="3" opacity="0.5"/>
-          <circle class="pulse" r="5" fill="#00D9FF">
-            <animateMotion dur="2s" repeatCount="indefinite" path="M1000,90 L1000,160" />
-          </circle>
-        </g>
-
-        <!-- Traefik -> Support Channel -->
-        <g class="connection">
-          <line x1="900" y1="240" x2="200" y2="300" stroke="#EC4899" stroke-width="2" opacity="0.4" stroke-dasharray="8,4"/>
-          <circle class="pulse" r="4" fill="#EC4899">
-            <animateMotion dur="2.8s" repeatCount="indefinite" path="M900,240 L200,300" />
-          </circle>
-        </g>
-
-        <!-- Traefik -> Nginx instances -->
-        <g class="connection">
-          <line x1="900" y1="280" x2="250" y2="400" stroke="#22C55E" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="2.2s" repeatCount="indefinite" path="M900,280 L250,400" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="920" y1="290" x2="250" y2="520" stroke="#22C55E" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="url(#pulseGradient)">
-            <animateMotion dur="2.4s" repeatCount="indefinite" path="M920,290 L250,520" />
-          </circle>
-        </g>
-
-        <!-- Traefik -> API Gateways -->
-        <g class="connection">
-          <line x1="1000" y1="300" x2="700" y2="400" stroke="#F59E0B" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="#F59E0B">
-            <animateMotion dur="2s" repeatCount="indefinite" path="M1000,300 L700,400" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1020" y1="300" x2="1000" y2="400" stroke="#F59E0B" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="#F59E0B">
-            <animateMotion dur="1.9s" repeatCount="indefinite" path="M1020,300 L1000,400" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1040" y1="300" x2="1300" y2="400" stroke="#F59E0B" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="#F59E0B">
-            <animateMotion dur="2.1s" repeatCount="indefinite" path="M1040,300 L1300,400" />
-          </circle>
-        </g>
-
-        <!-- Cache System -> Microservices -->
-        <g class="connection">
-          <line x1="1650" y1="500" x2="700" y2="650" stroke="#EF4444" stroke-width="2" opacity="0.3" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="3" fill="#EF4444">
-            <animateMotion dur="1.6s" repeatCount="indefinite" path="M1650,500 L700,650" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1650" y1="510" x2="1200" y2="650" stroke="#EF4444" stroke-width="2" opacity="0.3" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="3" fill="#EF4444">
-            <animateMotion dur="1.7s" repeatCount="indefinite" path="M1650,510 L1200,650" />
-          </circle>
-        </g>
-
-        <!-- Kafka -> Microservices -->
-        <g class="connection">
-          <line x1="1650" y1="680" x2="700" y2="750" stroke="#0EA5E9" stroke-width="2" opacity="0.4" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="4" fill="#0EA5E9">
-            <animateMotion dur="1.8s" repeatCount="indefinite" path="M1650,680 L700,750" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1650" y1="690" x2="1200" y2="750" stroke="#0EA5E9" stroke-width="2" opacity="0.4" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="4" fill="#0EA5E9">
-            <animateMotion dur="1.9s" repeatCount="indefinite" path="M1650,690 L1200,750" />
-          </circle>
-        </g>
-
-        <!-- NATS -> Microservices -->
-        <g class="connection">
-          <line x1="1650" y1="850" x2="450" y2="730" stroke="#3B82F6" stroke-width="2" opacity="0.4" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="3" fill="#3B82F6">
-            <animateMotion dur="2s" repeatCount="indefinite" path="M1650,850 L450,730" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1650" y1="860" x2="700" y2="800" stroke="#3B82F6" stroke-width="2" opacity="0.4" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="3" fill="#3B82F6">
-            <animateMotion dur="2.1s" repeatCount="indefinite" path="M1650,860 L700,800" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1650" y1="870" x2="1000" y2="800" stroke="#3B82F6" stroke-width="2" opacity="0.4" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="3" fill="#3B82F6">
-            <animateMotion dur="1.9s" repeatCount="indefinite" path="M1650,870 L1000,800" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1650" y1="880" x2="1300" y2="800" stroke="#3B82F6" stroke-width="2" opacity="0.4" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="3" fill="#3B82F6">
-            <animateMotion dur="2.2s" repeatCount="indefinite" path="M1650,880 L1300,800" />
-          </circle>
-        </g>
-
-        <!-- Microservices -> Dgraph -->
-        <g class="connection">
-          <line x1="450" y1="850" x2="900" y2="1000" stroke="#8B5CF6" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="#8B5CF6">
-            <animateMotion dur="1.7s" repeatCount="indefinite" path="M450,850 L900,1000" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="700" y1="900" x2="950" y2="1000" stroke="#8B5CF6" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="#8B5CF6">
-            <animateMotion dur="1.6s" repeatCount="indefinite" path="M700,900 L950,1000" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1000" y1="900" x2="1000" y2="1000" stroke="#8B5CF6" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="#8B5CF6">
-            <animateMotion dur="1.5s" repeatCount="indefinite" path="M1000,900 L1000,1000" />
-          </circle>
-        </g>
-        <g class="connection">
-          <line x1="1300" y1="900" x2="1050" y2="1000" stroke="#8B5CF6" stroke-width="2.5" opacity="0.4"/>
-          <circle class="pulse" r="4" fill="#8B5CF6">
-            <animateMotion dur="1.8s" repeatCount="indefinite" path="M1300,900 L1050,1000" />
-          </circle>
-        </g>
-
-        <!-- Dgraph -> CDC -->
-        <g class="connection">
-          <line x1="1100" y1="1050" x2="1650" y2="1000" stroke="#A855F7" stroke-width="2" opacity="0.4" stroke-dasharray="8,4"/>
-          <circle class="pulse" r="4" fill="#A855F7">
-            <animateMotion dur="1.9s" repeatCount="indefinite" path="M1100,1050 L1650,1000" />
-          </circle>
-        </g>
-
-        <!-- Dgraph replication -->
-        <g class="connection">
-          <line x1="1020" y1="1050" x2="1120" y2="1050" stroke="#8B5CF6" stroke-width="2" opacity="0.5" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="4" fill="#8B5CF6">
-            <animateMotion dur="1.2s" repeatCount="indefinite" path="M1020,1050 L1120,1050" />
-          </circle>
-          <text x="1070" y="1040" fill="#8B5CF6" font-size="11" text-anchor="middle">replication</text>
-        </g>
-
-        <!-- ========== СЕРВИСЫ ========== -->
-
-        <!-- Internet -->
-        <g class="service-node">
-          <circle cx="1000" cy="60" r="35" fill="rgba(0, 217, 255, 0.15)" stroke="#00D9FF" stroke-width="2.5"/>
-          <text x="1000" y="38" text-anchor="middle" fill="#00D9FF" font-size="16">👤</text>
-          <text x="1000" y="65" text-anchor="middle" fill="#00D9FF" font-weight="700" font-size="16">Internet</text>
-          <text x="1000" y="110" text-anchor="middle" fill="#94A3B8" font-size="12">User Devices / External Systems</text>
-        </g>
-
-        <!-- Traefik -->
-        <g class="service-node" :class="{ active: activeNode === 'traefik' }" @mouseenter="activeNode = 'traefik'" @mouseleave="activeNode = null">
-          <rect x="800" y="160" width="400" height="80" rx="10"
-                fill="rgba(236, 72, 153, 0.18)"
-                stroke="#EC4899"
-                stroke-width="3"
-                filter="url(#glow)"/>
-          <text x="1000" y="192" text-anchor="middle" fill="#EC4899" font-weight="700" font-size="18">Traefik</text>
-          <text x="1000" y="215" text-anchor="middle" fill="#94A3B8" font-size="13">On-premise Gateway / Reverse Proxy / Load Balancer</text>
-        </g>
-
-        <!-- Support Channel (Perimeter) -->
-        <g class="service-node" :class="{ active: activeNode === 'support' }" @mouseenter="activeNode = 'support'" @mouseleave="activeNode = null">
-          <rect x="120" y="280" width="180" height="90" rx="8"
-                fill="rgba(236, 72, 153, 0.15)"
-                stroke="#EC4899"
-                stroke-width="2"
-                stroke-dasharray="8,4"/>
-          <text x="210" y="310" text-anchor="middle" fill="#EC4899" font-weight="600" font-size="14">Support Channel</text>
-          <text x="210" y="330" text-anchor="middle" fill="#94A3B8" font-size="11">SSH / VPN</text>
-          <text x="210" y="348" text-anchor="middle" fill="#94A3B8" font-size="11">Admin Access</text>
-          <text x="210" y="365" text-anchor="middle" fill="#94A3B8" font-size="10" opacity="0.7">For Engineers</text>
-        </g>
-
-        <!-- Integration Channels (Perimeter) -->
-        <g class="service-node" :class="{ active: activeNode === 'integration' }" @mouseenter="activeNode = 'integration'" @mouseleave="activeNode = null">
-          <rect x="1650" y="280" width="220" height="110" rx="8"
-                fill="rgba(16, 185, 129, 0.15)"
-                stroke="#10B981"
-                stroke-width="2"
-                stroke-dasharray="8,4"/>
-          <text x="1760" y="310" text-anchor="middle" fill="#10B981" font-weight="600" font-size="14">Integration Channels</text>
-          <text x="1760" y="332" text-anchor="middle" fill="#94A3B8" font-size="11">REST / GraphQL / gRPC</text>
-          <text x="1760" y="350" text-anchor="middle" fill="#94A3B8" font-size="11">SOAP / WebSockets</text>
-          <text x="1760" y="368" text-anchor="middle" fill="#94A3B8" font-size="11">File Exchange (FTP/SFTP)</text>
-          <text x="1760" y="385" text-anchor="middle" fill="#94A3B8" font-size="10" opacity="0.7">Client Systems Integration</text>
-        </g>
-
-        <!-- Microservices -> S3 Storage -->
-        <g class="connection">
-          <line x1="900" y1="680" x2="1600" y2="575" stroke="#F97316" stroke-width="2" opacity="0.3" stroke-dasharray="6,4"/>
-          <circle class="pulse" r="3" fill="#F97316">
-            <animateMotion dur="2s" repeatCount="indefinite" path="M900,680 L1600,575" />
-          </circle>
-        </g>
-
-        <!-- Nginx + Frontend #1 -->
-        <g class="service-node" :class="{ active: activeNode === 'nginx1' }" @mouseenter="activeNode = 'nginx1'" @mouseleave="activeNode = null">
-          <rect x="140" y="390" width="140" height="100" rx="8"
-                fill="rgba(34, 197, 94, 0.15)"
-                stroke="#22C55E"
-                stroke-width="2.5"/>
-          <text x="210" y="415" text-anchor="middle" fill="#22C55E" font-weight="600" font-size="15">Nginx #1</text>
-          <line x1="150" y1="425" x2="270" y2="425" stroke="#22C55E" stroke-width="1" opacity="0.3"/>
-          <rect x="153" y="433" width="114" height="47" rx="5"
-                fill="rgba(10, 132, 255, 0.2)"
-                stroke="#0A84FF"
-                stroke-width="1.5"/>
-          <text x="210" y="453" text-anchor="middle" fill="#0A84FF" font-weight="600" font-size="13">Frontend</text>
-          <text x="210" y="470" text-anchor="middle" fill="#94A3B8" font-size="10">Angular / Vue / React</text>
-        </g>
-
-        <!-- Nginx + Frontend #2 -->
-        <g class="service-node" :class="{ active: activeNode === 'nginx2' }" @mouseenter="activeNode = 'nginx2'" @mouseleave="activeNode = null">
-          <rect x="140" y="510" width="140" height="100" rx="8"
-                fill="rgba(34, 197, 94, 0.15)"
-                stroke="#22C55E"
-                stroke-width="2.5"/>
-          <text x="210" y="535" text-anchor="middle" fill="#22C55E" font-weight="600" font-size="15">Nginx #2</text>
-          <line x1="150" y1="545" x2="270" y2="545" stroke="#22C55E" stroke-width="1" opacity="0.3"/>
-          <rect x="153" y="553" width="114" height="47" rx="5"
-                fill="rgba(10, 132, 255, 0.2)"
-                stroke="#0A84FF"
-                stroke-width="1.5"/>
-          <text x="210" y="573" text-anchor="middle" fill="#0A84FF" font-weight="600" font-size="13">Frontend</text>
-          <text x="210" y="590" text-anchor="middle" fill="#94A3B8" font-size="10">Angular / Vue / React</text>
-        </g>
-
-        <!-- Scaling indicator -->
-        <text x="210" y="630" text-anchor="middle" fill="#22C55E" font-size="13" font-weight="600">⬍ Scalable ⬍</text>
-        <text x="210" y="648" text-anchor="middle" fill="#94A3B8" font-size="11">Load Balanced</text>
-
-        <!-- API Gateway #1 -->
-        <g class="service-node" :class="{ active: activeNode === 'gw1' }" @mouseenter="activeNode = 'gw1'" @mouseleave="activeNode = null">
-          <rect x="550" y="390" width="280" height="80" rx="10"
-                fill="url(#microserviceGradient)"
-                stroke="#F59E0B"
-                stroke-width="2.5"/>
-          <text x="690" y="418" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="16">API Gateway #1</text>
-          <text x="690" y="440" text-anchor="middle" fill="#94A3B8" font-size="12">REST API • GraphQL • Auth</text>
-          <text x="690" y="458" text-anchor="middle" fill="#94A3B8" font-size="11">Rate Limiting • Validation</text>
-        </g>
-
-        <!-- API Gateway #2 -->
-        <g class="service-node" :class="{ active: activeNode === 'gw2' }" @mouseenter="activeNode = 'gw2'" @mouseleave="activeNode = null">
-          <rect x="850" y="390" width="280" height="80" rx="10"
-                fill="url(#microserviceGradient)"
-                stroke="#F59E0B"
-                stroke-width="2.5"/>
-          <text x="990" y="418" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="16">API Gateway #2</text>
-          <text x="990" y="440" text-anchor="middle" fill="#94A3B8" font-size="12">REST API • GraphQL • Auth</text>
-          <text x="990" y="458" text-anchor="middle" fill="#94A3B8" font-size="11">Rate Limiting • Validation</text>
-        </g>
-
-        <!-- API Gateway #N -->
-        <g class="service-node">
-          <rect x="1150" y="390" width="280" height="80" rx="10"
-                fill="url(#microserviceGradient)"
-                stroke="#F59E0B"
-                stroke-width="2.5"
-                stroke-dasharray="8,4"
-                opacity="0.5"/>
-          <text x="1290" y="425" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="20">. . . #N</text>
-          <text x="1290" y="448" text-anchor="middle" fill="#94A3B8" font-size="12" opacity="0.7">Scalable</text>
-        </g>
-
-        <!-- Cache System -->
-        <g class="service-node" :class="{ active: activeNode === 'cache' }" @mouseenter="activeNode = 'cache'" @mouseleave="activeNode = null">
-          <rect x="1600" y="450" width="180" height="80" rx="8"
-                fill="rgba(239, 68, 68, 0.15)"
-                stroke="#EF4444"
-                stroke-width="2.5"/>
-          <text x="1690" y="478" text-anchor="middle" fill="#EF4444" font-weight="700" font-size="15">Cache System</text>
-          <text x="1690" y="498" text-anchor="middle" fill="#94A3B8" font-size="11">Redis / Dragonfly</text>
-          <text x="1690" y="515" text-anchor="middle" fill="#94A3B8" font-size="10">In-Memory Caching</text>
-        </g>
-
-        <!-- S3 Storage -->
-        <g class="service-node" :class="{ active: activeNode === 's3' }" @mouseenter="activeNode = 's3'" @mouseleave="activeNode = null">
-          <rect x="1600" y="550" width="180" height="50" rx="8"
-                fill="rgba(249, 115, 22, 0.15)"
-                stroke="#F97316"
-                stroke-width="2.5"/>
-          <text x="1690" y="571" text-anchor="middle" fill="#F97316" font-weight="700" font-size="15">📦 S3 Storage</text>
-          <text x="1690" y="590" text-anchor="middle" fill="#94A3B8" font-size="10">Object Storage</text>
-        </g>
-
-        <!-- Kafka -->
-        <g class="service-node" :class="{ active: activeNode === 'kafka' }" @mouseenter="activeNode = 'kafka'" @mouseleave="activeNode = null">
-          <rect x="1600" y="620" width="180" height="90" rx="8"
-                fill="rgba(14, 165, 233, 0.15)"
-                stroke="#0EA5E9"
-                stroke-width="2.5"/>
-          <text x="1690" y="650" text-anchor="middle" fill="#0EA5E9" font-weight="700" font-size="15">Kafka</text>
-          <text x="1690" y="670" text-anchor="middle" fill="#94A3B8" font-size="11">Event Streaming</text>
-          <text x="1690" y="687" text-anchor="middle" fill="#94A3B8" font-size="10">Distributed Log</text>
-          <text x="1690" y="703" text-anchor="middle" fill="#94A3B8" font-size="10" opacity="0.7">High Throughput</text>
-        </g>
-
-        <!-- NATS -->
-        <g class="service-node" :class="{ active: activeNode === 'nats' }" @mouseenter="activeNode = 'nats'" @mouseleave="activeNode = null">
-          <rect x="1600" y="800" width="180" height="90" rx="8"
-                fill="rgba(59, 130, 246, 0.15)"
-                stroke="#3B82F6"
-                stroke-width="2.5"/>
-          <text x="1690" y="830" text-anchor="middle" fill="#3B82F6" font-weight="700" font-size="15">NATS</text>
-          <text x="1690" y="850" text-anchor="middle" fill="#94A3B8" font-size="11">Message Broker</text>
-          <text x="1690" y="867" text-anchor="middle" fill="#94A3B8" font-size="10">High-Speed Messaging</text>
-          <text x="1690" y="883" text-anchor="middle" fill="#94A3B8" font-size="10" opacity="0.7">Pub/Sub • Req/Reply</text>
-        </g>
-
-        <!-- Microservice: Сервис сущностей (Assets) -->
-        <g class="service-node" :class="{ active: activeNode === 'entities' }" @mouseenter="activeNode = 'entities'" @mouseleave="activeNode = null">
-          <rect x="320" y="650" width="300" height="120" rx="10"
-                fill="url(#microserviceGradient)"
-                stroke="#F59E0B"
-                stroke-width="2.5"/>
-          <text x="470" y="680" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="15">Сервис сущностей</text>
-          <line x1="330" y1="690" x2="610" y2="690" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-
-          <rect x="335" y="700" width="90" height="28" rx="4" fill="rgba(139, 92, 246, 0.3)" stroke="#8B5CF6" stroke-width="1"/>
-          <text x="380" y="718" text-anchor="middle" fill="#8B5CF6" font-size="11" font-weight="600">Entities CRUD</text>
-
-          <rect x="435" y="700" width="75" height="28" rx="4" fill="rgba(34, 197, 94, 0.3)" stroke="#22C55E" stroke-width="1"/>
-          <text x="472" y="718" text-anchor="middle" fill="#22C55E" font-size="11" font-weight="600">Validation</text>
-
-          <rect x="520" y="700" width="80" height="28" rx="4" fill="rgba(168, 85, 247, 0.3)" stroke="#A855F7" stroke-width="1"/>
-          <text x="560" y="718" text-anchor="middle" fill="#A855F7" font-size="11" font-weight="600">Permissions</text>
-
-          <!-- Broker layer -->
-          <rect x="330" y="738" width="280" height="24" rx="4" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6" stroke-width="1"/>
-          <text x="470" y="754" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="500">Broker (NATS / Kafka / Redis)</text>
-        </g>
-
-        <!-- Microservice: User & Auth -->
-        <g class="service-node" :class="{ active: activeNode === 'user' }" @mouseenter="activeNode = 'user'" @mouseleave="activeNode = null">
-          <rect x="650" y="710" width="320" height="120" rx="10"
-                fill="url(#microserviceGradient)"
-                stroke="#F59E0B"
-                stroke-width="2.5"/>
-          <text x="810" y="740" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="15">User & Auth Service</text>
-          <line x1="660" y1="750" x2="960" y2="750" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-
-          <rect x="665" y="760" width="60" height="28" rx="4" fill="rgba(34, 197, 94, 0.3)" stroke="#22C55E" stroke-width="1"/>
-          <text x="695" y="778" text-anchor="middle" fill="#22C55E" font-size="11" font-weight="600">User</text>
-
-          <rect x="735" y="760" width="60" height="28" rx="4" fill="rgba(236, 72, 153, 0.3)" stroke="#EC4899" stroke-width="1"/>
-          <text x="765" y="778" text-anchor="middle" fill="#EC4899" font-size="11" font-weight="600">Auth</text>
-
-          <rect x="805" y="760" width="70" height="28" rx="4" fill="rgba(168, 85, 247, 0.3)" stroke="#A855F7" stroke-width="1"/>
-          <text x="840" y="778" text-anchor="middle" fill="#A855F7" font-size="11" font-weight="600">Roles</text>
-
-          <rect x="885" y="760" width="70" height="28" rx="4" fill="rgba(52, 211, 153, 0.3)" stroke="#34D399" stroke-width="1"/>
-          <text x="920" y="778" text-anchor="middle" fill="#34D399" font-size="11" font-weight="600">Groups</text>
-
-          <!-- Broker layer -->
-          <rect x="660" y="798" width="300" height="24" rx="4" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6" stroke-width="1"/>
-          <text x="810" y="814" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="500">Broker (NATS / Kafka / Redis)</text>
-        </g>
-
-        <!-- Microservice: Events -->
-        <g class="service-node" :class="{ active: activeNode === 'events' }" @mouseenter="activeNode = 'events'" @mouseleave="activeNode = null">
-          <rect x="1000" y="700" width="340" height="130" rx="10"
-                fill="url(#microserviceGradient)"
-                stroke="#F59E0B"
-                stroke-width="2.5"/>
-          <text x="1170" y="730" text-anchor="middle" fill="#F59E0B" font-weight="700" font-size="15">Events & Notifications</text>
-          <line x1="1010" y1="740" x2="1330" y2="740" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-
-          <rect x="1015" y="750" width="75" height="28" rx="4" fill="rgba(245, 158, 11, 0.3)" stroke="#F59E0B" stroke-width="1"/>
-          <text x="1052" y="768" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="600">Events</text>
-
-          <rect x="1100" y="750" width="90" height="28" rx="4" fill="rgba(236, 72, 153, 0.3)" stroke="#EC4899" stroke-width="1"/>
-          <text x="1145" y="768" text-anchor="middle" fill="#EC4899" font-size="11" font-weight="600">Notifications</text>
-
-          <rect x="1200" y="750" width="120" height="28" rx="4" fill="rgba(52, 211, 153, 0.3)" stroke="#34D399" stroke-width="1"/>
-          <text x="1260" y="768" text-anchor="middle" fill="#34D399" font-size="11" font-weight="600">Email Queue</text>
-
-          <rect x="1015" y="788" width="60" height="28" rx="4" fill="rgba(251, 146, 60, 0.3)" stroke="#FB923C" stroke-width="1"/>
-          <text x="1045" y="806" text-anchor="middle" fill="#FB923C" font-size="11" font-weight="600">Push</text>
-
-          <rect x="1085" y="788" width="60" height="28" rx="4" fill="rgba(234, 179, 8, 0.3)" stroke="#EAB308" stroke-width="1"/>
-          <text x="1115" y="806" text-anchor="middle" fill="#EAB308" font-size="11" font-weight="600">SMS</text>
-
-          <rect x="1155" y="788" width="75" height="28" rx="4" fill="rgba(139, 92, 246, 0.3)" stroke="#8B5CF6" stroke-width="1"/>
-          <text x="1192" y="806" text-anchor="middle" fill="#8B5CF6" font-size="11" font-weight="600">Webhooks</text>
-
-          <rect x="1240" y="788" width="80" height="28" rx="4" fill="rgba(168, 85, 247, 0.3)" stroke="#A855F7" stroke-width="1"/>
-          <text x="1280" y="806" text-anchor="middle" fill="#A855F7" font-size="11" font-weight="600">Templates</text>
-
-          <!-- Broker layer -->
-          <rect x="1010" y="826" width="320" height="24" rx="4" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6" stroke-width="1"/>
-          <text x="1170" y="842" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="500">Broker (NATS / Kafka / Redis)</text>
-        </g>
-
-        <!-- Microservice: Integration Adapter -->
-        <g class="service-node" :class="{ active: activeNode === 'adapter' }" @mouseenter="activeNode = 'adapter'" @mouseleave="activeNode = null">
-          <rect x="1380" y="450" width="200" height="100" rx="10"
-                fill="url(#microserviceGradient)"
-                stroke="#10B981"
-                stroke-width="2.5"/>
-          <text x="1480" y="480" text-anchor="middle" fill="#10B981" font-weight="700" font-size="15">Integration Adapter</text>
-          <line x1="1390" y1="490" x2="1570" y2="490" stroke="#10B981" stroke-width="1" opacity="0.3"/>
-
-          <rect x="1395" y="500" width="75" height="24" rx="4" fill="rgba(16, 185, 129, 0.3)" stroke="#10B981" stroke-width="1"/>
-          <text x="1432" y="516" text-anchor="middle" fill="#10B981" font-size="10" font-weight="600">REST</text>
-
-          <rect x="1480" y="500" width="80" height="24" rx="4" fill="rgba(52, 211, 153, 0.3)" stroke="#34D399" stroke-width="1"/>
-          <text x="1520" y="516" text-anchor="middle" fill="#34D399" font-size="10" font-weight="600">GraphQL</text>
-
-          <!-- Broker layer -->
-          <rect x="1390" y="528" width="180" height="18" rx="4" fill="rgba(59, 130, 246, 0.2)" stroke="#3B82F6" stroke-width="1"/>
-          <text x="1480" y="541" text-anchor="middle" fill="#3B82F6" font-size="9" font-weight="500">Broker (NATS / Kafka)</text>
-        </g>
-
-        <!-- Integration Adapter -> Integration Channels -->
-        <g class="connection">
-          <line x1="1580" y1="490" x2="1650" y2="340" stroke="#10B981" stroke-width="2.5" opacity="0.6" stroke-dasharray="8,4"/>
-          <circle class="pulse" r="4" fill="#10B981">
-            <animateMotion dur="2.2s" repeatCount="indefinite" path="M1580,490 L1650,340" />
-          </circle>
-        </g>
-
-        <!-- Dgraph Zero -->
-        <g class="service-node" :class="{ active: activeNode === 'dgz' }" @mouseenter="activeNode = 'dgz'" @mouseleave="activeNode = null">
-          <rect x="850" y="1000" width="180" height="100" rx="10"
-                fill="rgba(139, 92, 246, 0.2)"
-                stroke="#8B5CF6"
-                stroke-width="2.5"/>
-          <text x="940" y="1030" text-anchor="middle" fill="#8B5CF6" font-weight="700" font-size="16">DB</text>
-          <line x1="860" y1="1042" x2="1020" y2="1042" stroke="#8B5CF6" stroke-width="1" opacity="0.3"/>
-          <text x="940" y="1063" text-anchor="middle" fill="#8B5CF6" font-weight="600" font-size="14">Dgraph Zero</text>
-          <text x="940" y="1085" text-anchor="middle" fill="#94A3B8" font-size="11">Cluster Manager</text>
-        </g>
-
-        <!-- Dgraph Alpha -->
-        <g class="service-node" :class="{ active: activeNode === 'dga' }" @mouseenter="activeNode = 'dga'" @mouseleave="activeNode = null">
-          <rect x="1050" y="1000" width="180" height="100" rx="10"
-                fill="rgba(139, 92, 246, 0.2)"
-                stroke="#8B5CF6"
-                stroke-width="2.5"/>
-          <text x="1140" y="1030" text-anchor="middle" fill="#8B5CF6" font-weight="700" font-size="16">DB</text>
-          <line x1="1060" y1="1042" x2="1220" y2="1042" stroke="#8B5CF6" stroke-width="1" opacity="0.3"/>
-          <text x="1140" y="1063" text-anchor="middle" fill="#8B5CF6" font-weight="600" font-size="14">Dgraph Alpha</text>
-          <text x="1140" y="1085" text-anchor="middle" fill="#94A3B8" font-size="11">Data Storage</text>
-        </g>
-
-        <!-- CDC -->
-        <g class="service-node" :class="{ active: activeNode === 'cdc' }" @mouseenter="activeNode = 'cdc'" @mouseleave="activeNode = null">
-          <rect x="1580" y="950" width="200" height="100" rx="10"
-                fill="rgba(168, 85, 247, 0.15)"
-                stroke="#A855F7"
-                stroke-width="2.5"/>
-          <text x="1680" y="980" text-anchor="middle" fill="#A855F7" font-weight="700" font-size="15">CDC</text>
-          <text x="1680" y="1002" text-anchor="middle" fill="#94A3B8" font-size="12">Change Data Capture</text>
-          <line x1="1590" y1="1012" x2="1770" y2="1012" stroke="#A855F7" stroke-width="1" opacity="0.3"/>
-          <text x="1680" y="1028" text-anchor="middle" fill="#94A3B8" font-size="10">→ Kafka Topics</text>
-          <text x="1680" y="1043" text-anchor="middle" fill="#94A3B8" font-size="10" opacity="0.7">Real-time Streaming</text>
-        </g>
-
-        <!-- Other DBs -->
-        <g class="service-node" opacity="0.5">
-          <rect x="1280" y="1000" width="130" height="45" rx="6"
-                fill="rgba(239, 68, 68, 0.1)"
-                stroke="#EF4444"
-                stroke-width="1.5"
-                stroke-dasharray="6,4"/>
-          <text x="1345" y="1028" text-anchor="middle" fill="#EF4444" font-size="12" font-weight="600">PostgreSQL</text>
-        </g>
-
-        <g class="service-node" opacity="0.5">
-          <rect x="1280" y="1055" width="130" height="45" rx="6"
-                fill="rgba(234, 179, 8, 0.1)"
-                stroke="#EAB308"
-                stroke-width="1.5"
-                stroke-dasharray="6,4"/>
-          <text x="1345" y="1083" text-anchor="middle" fill="#EAB308" font-size="12" font-weight="600">MongoDB</text>
-        </g>
-
-        <text x="1345" y="1125" text-anchor="middle" fill="#94A3B8" font-size="11" opacity="0.7">+ другие БД...</text>
-
-        <!-- Транспортеры -->
-        <text x="1690" y="925" text-anchor="middle" fill="#94A3B8" font-size="11" font-weight="600" opacity="0.7">
-          Transporters:
-        </text>
-        <text x="1690" y="945" text-anchor="middle" fill="#94A3B8" font-size="9" opacity="0.6">
-          NATS • Kafka • Redis • MQTT • AMQP
-        </text>
-
-        <!-- Легенда -->
-        <g class="legend" transform="translate(150, 1180)">
-          <text x="0" y="0" fill="#94A3B8" font-size="14" font-weight="700">Типы связей:</text>
-
-          <line x1="0" y1="25" x2="40" y2="25" stroke="#00D9FF" stroke-width="3"/>
-          <text x="50" y="30" fill="#94A3B8" font-size="12">Internet</text>
-
-          <line x1="130" y1="25" x2="170" y2="25" stroke="#22C55E" stroke-width="2.5"/>
-          <text x="180" y="30" fill="#94A3B8" font-size="12">HTTP/Gateway</text>
-
-          <line x1="300" y1="25" x2="340" y2="25" stroke="#F59E0B" stroke-width="2.5"/>
-          <text x="350" y="30" fill="#94A3B8" font-size="12">Microservices</text>
-
-          <line x1="470" y1="25" x2="510" y2="25" stroke="#3B82F6" stroke-width="2" stroke-dasharray="6,4"/>
-          <text x="520" y="30" fill="#94A3B8" font-size="12">NATS Broker</text>
-
-          <line x1="640" y1="25" x2="680" y2="25" stroke="#0EA5E9" stroke-width="2" stroke-dasharray="6,4"/>
-          <text x="690" y="30" fill="#94A3B8" font-size="12">Kafka Stream</text>
-
-          <line x1="820" y1="25" x2="860" y2="25" stroke="#8B5CF6" stroke-width="2.5"/>
-          <text x="870" y="30" fill="#94A3B8" font-size="12">Database</text>
-
-          <line x1="970" y1="25" x2="1010" y2="25" stroke="#EF4444" stroke-width="2" stroke-dasharray="6,4"/>
-          <text x="1020" y="30" fill="#94A3B8" font-size="12">Cache</text>
-
-          <line x1="1100" y1="25" x2="1140" y2="25" stroke="#A855F7" stroke-width="2" stroke-dasharray="8,4"/>
-          <text x="1150" y="30" fill="#94A3B8" font-size="12">CDC Stream</text>
-
-          <line x1="1270" y1="25" x2="1310" y2="25" stroke="#EC4899" stroke-width="2" stroke-dasharray="8,4"/>
-          <text x="1320" y="30" fill="#94A3B8" font-size="12">Perimeter Channel</text>
-
-          <rect x="1490" y="17" width="18" height="18" rx="3" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,4"/>
-          <text x="1515" y="30" fill="#94A3B8" font-size="12">Опционально</text>
-        </g>
-      </svg>
+  <div class="architecture">
+    <!-- Layer 0: Users -->
+    <div class="arch-layer">
+      <div class="layer-label">Пользователи</div>
+      <div class="layer-nodes">
+        <div class="arch-node node-user">
+          <div class="node-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" fill="currentColor"/></svg>
+          </div>
+          <div class="node-label">Web / Mobile</div>
+        </div>
+        <div class="arch-node node-user">
+          <div class="node-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z" fill="currentColor"/></svg>
+          </div>
+          <div class="node-label">External API</div>
+        </div>
+        <div class="arch-node node-user">
+          <div class="node-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="currentColor"/></svg>
+          </div>
+          <div class="node-label">VPN / SSH</div>
+        </div>
+      </div>
     </div>
 
-    <div class="diagram-info">
-      <p class="info-text">
-        Полная архитектура микросервисной платформы с масштабируемостью, кешированием, CDC и интеграционными каналами
-      </p>
-      <p class="info-subtext">
-        Наведите на компоненты для интерактивного взаимодействия
-      </p>
+    <!-- Connector -->
+    <div class="arch-connector">
+      <div class="connector-line"></div>
+      <div class="connector-label">HTTPS / TLS</div>
+    </div>
+
+    <!-- Layer 1: Gateway -->
+    <div class="arch-layer">
+      <div class="layer-label">Gateway</div>
+      <div class="layer-nodes">
+        <div class="arch-node node-gateway node-wide">
+          <div class="node-header">
+            <div class="node-icon-sm">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="node-name">Traefik</span>
+            <span class="node-tag">Reverse Proxy</span>
+          </div>
+          <div class="node-details">Load Balancing, SSL Termination, Rate Limiting</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connector -->
+    <div class="arch-connector arch-connector-split">
+      <div class="connector-branches">
+        <div class="connector-branch"></div>
+        <div class="connector-branch"></div>
+      </div>
+    </div>
+
+    <!-- Layer 2: Frontend + API -->
+    <div class="arch-layer">
+      <div class="layer-label">Приложения</div>
+      <div class="layer-nodes layer-nodes-two">
+        <!-- Frontend group -->
+        <div class="node-group">
+          <div class="group-label">Frontend</div>
+          <div class="group-nodes">
+            <div class="arch-node node-frontend">
+              <div class="node-header">
+                <div class="node-icon-sm">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" fill="currentColor"/></svg>
+                </div>
+                <span class="node-name">Nginx + SPA</span>
+              </div>
+              <div class="node-details">Angular / Vue / React</div>
+              <div class="node-badge">x N</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Gateway group -->
+        <div class="node-group">
+          <div class="group-label">API Layer</div>
+          <div class="group-nodes">
+            <div class="arch-node node-api">
+              <div class="node-header">
+                <div class="node-icon-sm">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" fill="currentColor"/></svg>
+                </div>
+                <span class="node-name">API Gateway</span>
+              </div>
+              <div class="node-details">REST, GraphQL, Auth, Validation</div>
+              <div class="node-badge">x N</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connector -->
+    <div class="arch-connector">
+      <div class="connector-line"></div>
+      <div class="connector-label">gRPC / HTTP / Events</div>
+    </div>
+
+    <!-- Layer 3: Microservices -->
+    <div class="arch-layer arch-layer-main">
+      <div class="layer-label">Микросервисы</div>
+      <div class="layer-nodes layer-nodes-services">
+        <div class="arch-node node-service" v-for="svc in services" :key="svc.name">
+          <div class="node-header">
+            <span class="node-name">{{ svc.name }}</span>
+          </div>
+          <div class="node-modules">
+            <span class="module-tag" v-for="mod in svc.modules" :key="mod">{{ mod }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="layer-note">
+        <span class="note-badge">Polyglot</span>
+        JS, Python, Java, Go, .NET
+      </div>
+    </div>
+
+    <!-- Connector -->
+    <div class="arch-connector arch-connector-split">
+      <div class="connector-branches">
+        <div class="connector-branch"></div>
+        <div class="connector-branch"></div>
+        <div class="connector-branch"></div>
+      </div>
+    </div>
+
+    <!-- Layer 4: Infrastructure -->
+    <div class="arch-layer">
+      <div class="layer-label">Инфраструктура</div>
+      <div class="layer-nodes layer-nodes-infra">
+        <div class="arch-node node-infra node-broker">
+          <div class="node-header">
+            <span class="node-name">Message Broker</span>
+          </div>
+          <div class="node-details">NATS / Redis Streams</div>
+          <div class="node-sub">Pub/Sub, Event Streaming</div>
+        </div>
+        <div class="arch-node node-infra node-cache">
+          <div class="node-header">
+            <span class="node-name">Cache</span>
+          </div>
+          <div class="node-details">Redis / Dragonfly</div>
+          <div class="node-sub">In-Memory, 4-Level</div>
+        </div>
+        <div class="arch-node node-infra node-storage">
+          <div class="node-header">
+            <span class="node-name">Object Storage</span>
+          </div>
+          <div class="node-details">S3-compatible (SeaweedFS / Yandex S3)</div>
+          <div class="node-sub">Files, Media, Backups</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connector -->
+    <div class="arch-connector">
+      <div class="connector-line"></div>
+    </div>
+
+    <!-- Layer 5: Databases -->
+    <div class="arch-layer">
+      <div class="layer-label">Данные</div>
+      <div class="layer-nodes layer-nodes-db">
+        <div class="arch-node node-db node-db-primary">
+          <div class="node-header">
+            <span class="node-name">Dgraph</span>
+            <span class="node-tag">Primary</span>
+          </div>
+          <div class="node-details">Графовая БД</div>
+          <div class="node-sub">Zero + Alpha, Replication</div>
+        </div>
+        <div class="arch-node node-db">
+          <div class="node-header">
+            <span class="node-name">PostgreSQL</span>
+          </div>
+          <div class="node-details">Реляционная БД</div>
+        </div>
+        <div class="arch-node node-db">
+          <div class="node-header">
+            <span class="node-name">MongoDB</span>
+          </div>
+          <div class="node-details">Документная БД</div>
+        </div>
+        <div class="arch-node node-db node-db-cdc">
+          <div class="node-header">
+            <span class="node-name">CDC</span>
+          </div>
+          <div class="node-details">Change Data Capture</div>
+          <div class="node-sub">Real-time Streaming</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side: Observability -->
+    <div class="arch-sidebar">
+      <div class="sidebar-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" fill="currentColor"/></svg>
+        <span>Logging</span>
+      </div>
+      <div class="sidebar-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="currentColor"/></svg>
+        <span>Monitoring</span>
+      </div>
+      <div class="sidebar-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="currentColor"/></svg>
+        <span>Security</span>
+      </div>
+      <div class="sidebar-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/></svg>
+        <span>Tracing</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const activeNode = ref<string | null>(null)
+const services = [
+  {
+    name: 'Entities Service',
+    modules: ['CRUD', 'Validation', 'Permissions']
+  },
+  {
+    name: 'User & Auth',
+    modules: ['Auth', 'Roles', 'Groups']
+  },
+  {
+    name: 'Events & Notify',
+    modules: ['Email', 'Push', 'Webhooks']
+  },
+  {
+    name: 'Integration',
+    modules: ['REST', 'GraphQL', 'gRPC']
+  },
+  {
+    name: 'BPM Engine',
+    modules: ['Workflows', 'Tasks', 'Rules']
+  }
+]
 </script>
 
 <style scoped>
-.architecture-diagram {
-  width: 100%;
-  background: var(--gradient-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2xl);
-  margin: var(--spacing-2xl) 0;
+.architecture {
   position: relative;
+  padding: var(--spacing-2xl);
+  background: linear-gradient(180deg, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.85) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,0.06);
   overflow: hidden;
 }
 
-.architecture-diagram::before {
+.architecture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(239,63,41,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239,63,41,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* === Layers === */
+.arch-layer {
+  position: relative;
+  z-index: 1;
+}
+
+.layer-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(148,163,184,0.5);
+  margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+.layer-nodes {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.layer-nodes-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.layer-nodes-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.layer-nodes-infra {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.layer-nodes-db {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.layer-note {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 11px;
+  color: rgba(148,163,184,0.6);
+}
+
+.note-badge {
+  display: inline-block;
+  background: rgba(128,47,185,0.2);
+  color: #a78bfa;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+/* === Nodes === */
+.arch-node {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 12px 14px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.arch-node:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-1px);
+}
+
+.node-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.node-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.node-icon-sm {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.node-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+}
+
+.node-tag {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.node-details {
+  font-size: 11px;
+  color: rgba(148,163,184,0.7);
+  line-height: 1.4;
+}
+
+.node-sub {
+  font-size: 10px;
+  color: rgba(148,163,184,0.45);
+  margin-top: 2px;
+}
+
+.node-label {
+  font-size: 11px;
+  color: rgba(148,163,184,0.8);
+  text-align: center;
+  margin-top: 6px;
+}
+
+.node-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(148,163,184,0.4);
+  background: rgba(255,255,255,0.05);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.node-modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.module-tag {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 500;
+  background: rgba(255,255,255,0.05);
+  color: rgba(148,163,184,0.7);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* === Node Colors === */
+
+/* User nodes */
+.node-user {
+  text-align: center;
+  padding: 14px 20px;
+}
+.node-user .node-icon {
+  background: rgba(239,63,41,0.15);
+  color: #ef3f29;
+  margin: 0 auto;
+}
+
+/* Gateway */
+.node-gateway {
+  border-color: rgba(236,72,153,0.3);
+  background: rgba(236,72,153,0.08);
+}
+.node-gateway .node-name { color: #f472b6; }
+.node-gateway .node-tag { background: rgba(236,72,153,0.15); color: #f472b6; }
+.node-gateway .node-icon-sm { color: #f472b6; }
+.node-wide { max-width: 500px; width: 100%; margin: 0 auto; }
+
+/* Frontend */
+.node-frontend {
+  border-color: rgba(34,197,94,0.3);
+  background: rgba(34,197,94,0.06);
+}
+.node-frontend .node-name { color: #4ade80; }
+.node-frontend .node-icon-sm { color: #4ade80; }
+
+/* API */
+.node-api {
+  border-color: rgba(245,158,11,0.3);
+  background: rgba(245,158,11,0.06);
+}
+.node-api .node-name { color: #fbbf24; }
+.node-api .node-icon-sm { color: #fbbf24; }
+
+/* Services */
+.node-service {
+  border-color: rgba(239,63,41,0.2);
+  background: rgba(239,63,41,0.05);
+}
+.node-service .node-name { color: #fb923c; font-size: 12px; }
+.node-service .module-tag {
+  background: rgba(239,63,41,0.1);
+  border-color: rgba(239,63,41,0.15);
+  color: rgba(251,146,60,0.8);
+}
+
+/* Main layer highlight */
+.arch-layer-main {
+  background: rgba(239,63,41,0.03);
+  border: 1px solid rgba(239,63,41,0.08);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 0 -8px;
+}
+
+/* Infra nodes */
+.node-infra {
+  text-align: center;
+}
+.node-infra .node-header { justify-content: center; }
+.node-broker {
+  border-color: rgba(59,130,246,0.3);
+  background: rgba(59,130,246,0.06);
+}
+.node-broker .node-name { color: #60a5fa; }
+
+.node-cache {
+  border-color: rgba(239,68,68,0.3);
+  background: rgba(239,68,68,0.06);
+}
+.node-cache .node-name { color: #f87171; }
+
+.node-storage {
+  border-color: rgba(249,115,22,0.3);
+  background: rgba(249,115,22,0.06);
+}
+.node-storage .node-name { color: #fb923c; }
+
+/* DB nodes */
+.node-db {
+  text-align: center;
+  border-color: rgba(139,92,246,0.25);
+  background: rgba(139,92,246,0.05);
+}
+.node-db .node-header { justify-content: center; }
+.node-db .node-name { color: #a78bfa; }
+.node-db .node-tag { background: rgba(139,92,246,0.2); color: #a78bfa; }
+.node-db-primary {
+  border-color: rgba(139,92,246,0.4);
+  background: rgba(139,92,246,0.1);
+}
+.node-db-cdc {
+  border-color: rgba(168,85,247,0.25);
+  background: rgba(168,85,247,0.05);
+}
+.node-db-cdc .node-name { color: #c084fc; }
+
+/* === Connectors === */
+.arch-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.connector-line {
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(180deg, rgba(148,163,184,0.3) 0%, rgba(148,163,184,0.1) 100%);
+  border-radius: 1px;
+}
+
+.connector-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(148,163,184,0.35);
+  margin-top: 4px;
+}
+
+.arch-connector-split {
+  padding: 6px 0;
+}
+
+.connector-branches {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+}
+
+.connector-branches::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    linear-gradient(rgba(10, 132, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(10, 132, 255, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px;
-  pointer-events: none;
-  opacity: 0.5;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+  background: rgba(148,163,184,0.25);
 }
 
-.diagram-container {
-  position: relative;
-  z-index: 1;
-  background: rgba(15, 23, 42, 0.5);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  backdrop-filter: blur(10px);
+.connector-branches::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 2px;
+  background: rgba(148,163,184,0.15);
 }
 
-.diagram-svg {
-  width: 100%;
-  height: auto;
-  display: block;
+.connector-branch {
+  width: 2px;
+  height: 20px;
+  background: rgba(148,163,184,0.2);
+  margin-top: 10px;
 }
 
-/* Анимация пульсаций */
-.connection .pulse {
-  filter: drop-shadow(0 0 6px #00D9FF);
-  opacity: 0.8;
+/* === Node Groups === */
+.node-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.connection {
-  transition: all var(--transition-base);
+.group-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(148,163,184,0.4);
 }
 
-.connection line {
-  transition: all var(--transition-base);
+.group-nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* Стили сервисов */
-.service-node {
-  cursor: pointer;
-  transition: all var(--transition-base);
+/* === Sidebar (Observability) === */
+.arch-sidebar {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
 }
 
-.service-node.hoverable:hover rect,
-.service-node.active rect {
-  fill-opacity: 0.35;
-  stroke-width: 3.5;
-  filter: drop-shadow(0 0 14px currentColor);
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(148,163,184,0.4);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: rgba(15,23,42,0.7);
+  backdrop-filter: blur(4px);
 }
 
-.service-node rect {
-  transition: all var(--transition-base);
+.sidebar-item svg {
+  color: rgba(148,163,184,0.3);
+  flex-shrink: 0;
 }
 
-.service-node text {
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Легенда */
-.legend text {
-  font-family: var(--font-family-primary);
-}
-
-.legend line {
-  opacity: 0.7;
-}
-
-/* Информация */
-.diagram-info {
-  text-align: center;
-  margin-top: var(--spacing-lg);
-  position: relative;
-  z-index: 1;
-}
-
-.info-text {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-base);
-  margin: 0 0 var(--spacing-sm) 0;
-  font-weight: var(--font-weight-medium);
-}
-
-.info-subtext {
-  color: var(--color-text-tertiary);
-  font-size: var(--font-size-small);
-  margin: 0;
-}
-
-/* Responsive */
+/* === Responsive === */
 @media (max-width: 768px) {
-  .architecture-diagram {
+  .architecture {
     padding: var(--spacing-lg);
   }
 
-  .diagram-container {
-    padding: var(--spacing-sm);
+  .arch-sidebar {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
   }
 
-  .legend {
-    transform: scale(0.7);
-    transform-origin: left top;
+  .layer-nodes-two {
+    grid-template-columns: 1fr;
+  }
+
+  .layer-nodes-services {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .layer-nodes-infra,
+  .layer-nodes-db {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .node-wide {
+    max-width: 100%;
+  }
+
+  .connector-branches {
+    gap: 20px;
+  }
+
+  .connector-branches::after {
+    left: calc(50% - 20px);
+    width: 40px;
   }
 }
 
-/* Дополнительная анимация свечения при наведении */
-@keyframes nodeGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 10px currentColor);
+@media (max-width: 480px) {
+  .layer-nodes-infra,
+  .layer-nodes-db {
+    grid-template-columns: 1fr;
   }
-  50% {
-    filter: drop-shadow(0 0 20px currentColor);
-  }
-}
 
-.service-node.active rect {
-  animation: nodeGlow 2s ease-in-out infinite;
+  .layer-nodes-services {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>

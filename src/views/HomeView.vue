@@ -140,6 +140,17 @@
       </div>
     </section>
 
+    <!-- Tech Tag Cloud -->
+    <section class="section section-dark">
+      <div class="container">
+        <h2 class="section-title text-center">Наши технологии</h2>
+        <p class="section-subtitle text-center">
+          Экспертиза в 20+ технологиях. Нажмите на любую — читайте в нашей базе знаний
+        </p>
+        <TagCloud :tags="techTags" dark />
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="container">
@@ -158,6 +169,7 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import TagCloud, { techTags } from '@/components/TagCloud.vue'
 </script>
 
 <style scoped>

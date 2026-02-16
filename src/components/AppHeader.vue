@@ -35,6 +35,12 @@
                   <span>Сетевая безопасность (NDR)</span>
                 </RouterLink>
               </li>
+              <li>
+                <RouterLink to="/products/data-showcase" class="dropdown-link" @click="closeAll">
+                  <strong>Data Showcase</strong>
+                  <span>Цифровая витрина данных</span>
+                </RouterLink>
+              </li>
             </ul>
           </li>
           <li>
@@ -45,6 +51,9 @@
           </li>
           <li>
             <RouterLink to="/cooperation" class="nav-link" @click="closeAll">Сотрудничество</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/knowledge" class="nav-link" @click="closeAll">База знаний</RouterLink>
           </li>
           <li>
             <RouterLink to="/contact" class="btn btn-primary nav-cta" @click="closeAll">

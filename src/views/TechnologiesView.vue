@@ -101,7 +101,7 @@ const techLevels = [
       { category: 'Frontend', tech: 'React + Next.js (SSR)' },
       { category: 'Backend', tech: 'Node.js микросервисы' },
       { category: 'БД', tech: 'PostgreSQL + Redis + Elasticsearch' },
-      { category: 'Очереди', tech: 'RabbitMQ / Kafka' },
+      { category: 'Очереди', tech: 'RabbitMQ / NATS' },
       { category: 'Инфраструктура', tech: 'Docker + Docker Swarm' }
     ],
     benefits: [
@@ -125,7 +125,7 @@ const techLevels = [
       { category: 'Frontend', tech: 'React / Angular' },
       { category: 'Backend', tech: 'Полиглот (Node.js, Java, Python)' },
       { category: 'БД', tech: 'GraphDB + PostgreSQL + MongoDB + Redis' },
-      { category: 'Messaging', tech: 'Apache Kafka + NATS' },
+      { category: 'Messaging', tech: 'NATS JetStream' },
       { category: 'Search', tech: 'Elasticsearch' },
       { category: 'Инфраструктура', tech: 'Kubernetes + Service Mesh' }
     ],
