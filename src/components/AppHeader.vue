@@ -47,6 +47,9 @@
             <RouterLink to="/services" class="nav-link" @click="closeAll">Услуги</RouterLink>
           </li>
           <li>
+            <RouterLink to="/technologies" class="nav-link" @click="closeAll">Технологии</RouterLink>
+          </li>
+          <li>
             <RouterLink to="/cases" class="nav-link" @click="closeAll">Кейсы</RouterLink>
           </li>
           <li>

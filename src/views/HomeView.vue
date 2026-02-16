@@ -131,8 +131,72 @@
       </div>
     </section>
 
-    <!-- Social Proof -->
+    <!-- Industry Verticals -->
     <section class="section">
+      <div class="container">
+        <h2 class="section-title text-center">Отраслевые решения</h2>
+        <p class="section-subtitle text-center">
+          Не просто технология — а решение конкретной боли вашей отрасли
+        </p>
+
+        <div class="verticals-grid">
+          <RouterLink to="/products/wonendr" class="vertical-card card">
+            <div class="vertical-icon-wrap vertical-icon-red">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="vertical-body">
+              <h3>Кибербезопасность</h3>
+              <p class="vertical-product">WoneNDR</p>
+              <p class="vertical-pain">ИБ-специалист один, бюджет ограничен, а PT NAD стоит от 5 млн/год. Сеть не мониторится вообще.</p>
+              <p class="vertical-solution">Автоматическая карта сети за 24 часа, обнаружение угроз с AI. В 5-10x дешевле enterprise NDR. Бесплатный аудит за 48 часов.</p>
+              <span class="vertical-link">Бесплатный аудит сети →</span>
+            </div>
+          </RouterLink>
+
+          <div class="vertical-card card vertical-card-coming">
+            <div class="vertical-icon-wrap vertical-icon-green">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="1.5"/><path d="M9 22V12h6v10" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="vertical-body">
+              <h3>ЖКХ и управление недвижимостью</h3>
+              <p class="vertical-product">Terra HMS <span class="vertical-badge">10/10 win rate</span></p>
+              <p class="vertical-pain">Управляющие компании тонут в Excel: заявки теряются, бригады неуправляемы, жильцы недовольны.</p>
+              <p class="vertical-solution">Учёт жильцов и договоров, приём заявок, управление бригадами, интеграция с ГИС ЖКХ. 10 из 10 внедрений успешны.</p>
+              <span class="vertical-link">Подробнее о Terra →</span>
+            </div>
+          </div>
+
+          <div class="vertical-card card vertical-card-coming">
+            <div class="vertical-icon-wrap vertical-icon-blue">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="17" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <div class="vertical-body">
+              <h3>Страхование</h3>
+              <p class="vertical-product">BrokerView <span class="vertical-badge">3/3 win rate</span></p>
+              <p class="vertical-pain">Страховые брокеры не могут красиво показать клиенту портфель. Данные в разных системах, ручная работа.</p>
+              <p class="vertical-solution">Единый портал для брокера и клиента: портфель полисов, аналитика, автоматические отчёты. Все 3 внедрения — успешны.</p>
+              <span class="vertical-link">Подробнее о BrokerView →</span>
+            </div>
+          </div>
+
+          <div class="vertical-card card vertical-card-coming">
+            <div class="vertical-icon-wrap vertical-icon-purple">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="currentColor" stroke-width="1.5"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="vertical-body">
+              <h3>Управление отзывами</h3>
+              <p class="vertical-product">СПИКС <span class="vertical-badge">Инвитро, 1000+ точек</span></p>
+              <p class="vertical-pain">Бренды с 100+ точками не контролируют отзывы. Негатив копится, репутация страдает, клиенты уходят.</p>
+              <p class="vertical-solution">Мониторинг отзывов со всех площадок, аналитика по точкам, автоматические ответы. Инвитро контролирует 1000+ отделений.</p>
+              <span class="vertical-link">Подробнее о СПИКС →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="section section-alt">
       <div class="container">
         <h2 class="section-title text-center">Опыт и результаты</h2>
         <div class="stats-grid">
@@ -176,6 +240,7 @@
           <div class="cta-buttons">
             <RouterLink to="/contact" class="btn btn-primary btn-lg">Обсудить проект →</RouterLink>
             <RouterLink to="/products/wonendr" class="btn btn-outline">Бесплатный аудит сети</RouterLink>
+            <RouterLink to="/products/data-showcase" class="btn btn-outline">Демо B2B Витрины</RouterLink>
           </div>
         </div>
       </div>
@@ -308,6 +373,58 @@ import TagCloud, { techTags } from '@/components/TagCloud.vue'
 .service-card h3 { margin-bottom: var(--spacing-md); }
 .service-card p { color: var(--color-text-tertiary); margin-bottom: 0; }
 
+/* Verticals */
+.verticals-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg); margin-top: var(--spacing-2xl);
+}
+
+.vertical-card {
+  display: flex; gap: var(--spacing-lg); padding: var(--spacing-xl);
+  text-decoration: none; color: inherit;
+}
+
+.vertical-icon-wrap {
+  width: 56px; height: 56px; border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+.vertical-icon-red { background: rgba(239, 63, 41, 0.1); color: #ef3f29; }
+.vertical-icon-green { background: rgba(16, 185, 129, 0.1); color: #10B981; }
+.vertical-icon-blue { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+.vertical-icon-purple { background: rgba(128, 47, 185, 0.1); color: #802fb9; }
+
+.vertical-body { flex: 1; min-width: 0; }
+.vertical-body h3 { font-size: var(--font-size-h5); margin-bottom: var(--spacing-xs); }
+
+.vertical-product {
+  font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+  color: var(--color-primary); margin-bottom: var(--spacing-sm);
+}
+
+.vertical-badge {
+  display: inline-block; background: rgba(16, 185, 129, 0.1); color: var(--color-success);
+  padding: 1px 8px; border-radius: var(--radius-full); font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold); margin-left: var(--spacing-xs);
+}
+
+.vertical-pain {
+  font-size: var(--font-size-small); color: var(--color-text-tertiary);
+  line-height: var(--line-height-relaxed); margin-bottom: var(--spacing-sm);
+}
+
+.vertical-solution {
+  font-size: var(--font-size-small); color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed); margin-bottom: var(--spacing-md);
+}
+
+.vertical-link {
+  color: var(--color-primary); font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-small);
+}
+
+.section-alt { background: var(--color-bg-secondary); }
+
 /* Stats */
 .stats-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -358,5 +475,7 @@ import TagCloud, { techTags } from '@/components/TagCloud.vue'
   .hero-cta, .cta-buttons { flex-direction: column; }
   .hero-cta .btn, .cta-buttons .btn { width: 100%; }
   .products-grid { grid-template-columns: 1fr; }
+  .verticals-grid { grid-template-columns: 1fr; }
+  .vertical-card { flex-direction: column; }
 }
 </style>
