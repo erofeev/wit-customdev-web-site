@@ -89,7 +89,7 @@ const router = createRouter({
       name: 'data-showcase',
       component: () => import('@/views/DataShowcaseView.vue'),
       meta: {
-        title: 'Data Showcase — Цифровая витрина данных | WONE IT'
+        title: 'B2B Витрина данных — Корпоративный портал данных | WONE IT'
       }
     },
     // Redirects for old routes

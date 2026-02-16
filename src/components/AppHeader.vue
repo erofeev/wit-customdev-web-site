@@ -37,8 +37,8 @@
               </li>
               <li>
                 <RouterLink to="/products/data-showcase" class="dropdown-link" @click="closeAll">
-                  <strong>Data Showcase</strong>
-                  <span>Цифровая витрина данных</span>
+                  <strong>B2B Витрина данных</strong>
+                  <span>Корпоративный портал данных</span>
                 </RouterLink>
               </li>
             </ul>

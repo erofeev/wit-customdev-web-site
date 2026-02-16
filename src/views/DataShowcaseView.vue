@@ -9,9 +9,9 @@
       </div>
       <div class="container">
         <div class="hero-content">
-          <div class="hero-badge">Data Showcase Platform</div>
+          <div class="hero-badge">B2B Витрина данных</div>
           <h1 class="hero-title animate-slide-up">
-            <span class="text-gradient">Data Showcase</span> — цифровая витрина данных
+            <span class="text-gradient">B2B Витрина данных</span> — корпоративный портал данных
           </h1>
           <p class="hero-subtitle animate-slide-up">
             Единая платформа для публикации, управления и безопасного доступа к корпоративным данным. Личные кабинеты, ролевая безопасность на уровне БД, готовность к масштабированию.
@@ -90,7 +90,7 @@
     <!-- What is Data Showcase -->
     <section class="section section-dark">
       <div class="container">
-        <h2 class="section-title text-center">Что такое Data Showcase</h2>
+        <h2 class="section-title text-center">Что такое B2B Витрина данных</h2>
         <p class="section-subtitle text-center">
           Платформа-конструктор для создания корпоративных витрин данных с встроенной безопасностью
         </p>
@@ -99,9 +99,9 @@
             <div class="feature-icon-wrap">
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <rect x="4" y="8" width="32" height="24" rx="4" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
-                <rect x="8" y="12" width="10" height="6" rx="1" fill="rgba(10,132,255,0.2)" stroke="var(--color-primary)" stroke-width="1.5"/>
-                <rect x="22" y="12" width="10" height="6" rx="1" fill="rgba(10,132,255,0.2)" stroke="var(--color-primary)" stroke-width="1.5"/>
-                <rect x="8" y="22" width="24" height="6" rx="1" fill="rgba(10,132,255,0.2)" stroke="var(--color-primary)" stroke-width="1.5"/>
+                <rect x="8" y="12" width="10" height="6" rx="1" fill="rgba(239,63,41,0.15)" stroke="var(--color-primary)" stroke-width="1.5"/>
+                <rect x="22" y="12" width="10" height="6" rx="1" fill="rgba(239,63,41,0.15)" stroke="var(--color-primary)" stroke-width="1.5"/>
+                <rect x="8" y="22" width="24" height="6" rx="1" fill="rgba(239,63,41,0.15)" stroke="var(--color-primary)" stroke-width="1.5"/>
               </svg>
             </div>
             <h3>Единая точка доступа</h3>
@@ -112,7 +112,7 @@
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <circle cx="20" cy="16" r="6" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
                 <path d="M10 34c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
-                <rect x="26" y="8" width="10" height="10" rx="5" fill="rgba(10,132,255,0.15)" stroke="var(--color-primary)" stroke-width="1.5"/>
+                <rect x="26" y="8" width="10" height="10" rx="5" fill="rgba(239,63,41,0.12)" stroke="var(--color-primary)" stroke-width="1.5"/>
                 <path d="M31 11v4M29 13h4" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
             </div>
@@ -124,7 +124,7 @@
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <rect x="6" y="6" width="28" height="28" rx="4" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
                 <path d="M6 14h28M14 14v20M26 14v20" stroke="var(--color-primary)" stroke-width="1.5" opacity="0.5"/>
-                <circle cx="20" cy="24" r="4" fill="rgba(10,132,255,0.2)" stroke="var(--color-primary)" stroke-width="1.5"/>
+                <circle cx="20" cy="24" r="4" fill="rgba(239,63,41,0.15)" stroke="var(--color-primary)" stroke-width="1.5"/>
                 <path d="M18.5 24l1 1 2-2" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
@@ -166,7 +166,7 @@
                 <circle cx="20" cy="20" r="14" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
                 <ellipse cx="20" cy="20" rx="6" ry="14" stroke="var(--color-primary)" stroke-width="1.5" fill="none" opacity="0.5"/>
                 <path d="M6 20h28" stroke="var(--color-primary)" stroke-width="1.5" opacity="0.5"/>
-                <circle cx="20" cy="20" r="3" fill="rgba(10,132,255,0.3)" stroke="var(--color-primary)" stroke-width="1.5"/>
+                <circle cx="20" cy="20" r="3" fill="rgba(239,63,41,0.2)" stroke="var(--color-primary)" stroke-width="1.5"/>
               </svg>
             </div>
             <h3>Геоданные и карты</h3>
@@ -298,7 +298,7 @@
       <div class="container">
         <h2 class="section-title text-center">Сценарии применения</h2>
         <p class="section-subtitle text-center">
-          Data Showcase адаптируется под задачи любой отрасли
+          B2B Витрина данных адаптируется под задачи любой отрасли
         </p>
         <div class="use-cases-grid">
           <div v-for="(uc, index) in useCases" :key="index" class="use-case-card" :style="{ borderTopColor: uc.color }">
@@ -363,7 +363,7 @@
 
     <!-- FAQ -->
     <FaqSection
-      title="Частые вопросы о Data Showcase"
+      title="Частые вопросы о B2B Витрине данных"
       subtitle="Ответы на главные вопросы о платформе"
       :items="faqItems"
       :dark="true"
@@ -393,7 +393,7 @@ const useCases = [
   {
     icon: '🏢',
     title: 'Страхование',
-    color: '#0A84FF',
+    color: '#EF3F29',
     description: 'Витрина страховых продуктов для агентов и клиентов с персонализированными тарифами.',
     features: ['Калькулятор тарифов по ролям', 'История полисов в личном кабинете', 'RLS по филиалам и агентам']
   },
@@ -496,7 +496,7 @@ const faqItems = [
   },
   {
     question: 'Можно ли подключить наши существующие базы данных?',
-    answer: 'Да. Data Showcase поддерживает подключение к PostgreSQL, MySQL, MS SQL, Oracle, MongoDB, REST API и файловым источникам (CSV, Excel). Для каждого источника настраивается ETL-процесс с расписанием синхронизации.'
+    answer: 'Да. B2B Витрина данных поддерживает подключение к PostgreSQL, MySQL, MS SQL, Oracle, MongoDB, REST API и файловым источникам (CSV, Excel). Для каждого источника настраивается ETL-процесс с расписанием синхронизации.'
   },
   {
     question: 'Какие требования к инфраструктуре для On-Premise?',
@@ -507,7 +507,7 @@ const faqItems = [
     answer: 'Архитектура на базе Moleculer.js позволяет горизонтально масштабировать каждый сервис независимо. PostgreSQL поддерживает партиционирование и read-реплики. На текущих проектах платформа обслуживает 50 000+ пользователей и 10+ млн записей.'
   },
   {
-    question: 'Сколько стоит Data Showcase?',
+    question: 'Сколько стоит B2B Витрина данных?',
     answer: 'Стоимость зависит от модели поставки, объёма данных и уровня кастомизации. SaaS — от 150 000 ₽/мес. On-Premise — проектная оценка. Мы предоставим детальную оценку после анализа ваших требований. Первая консультация и демонстрация — бесплатно.'
   }
 ]
@@ -542,21 +542,21 @@ const faqItems = [
 .hero-glow-1 {
   top: -20%; right: -10%;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(10, 132, 255, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(239, 63, 41, 0.3) 0%, transparent 70%);
 }
 
 .hero-glow-2 {
   bottom: -30%; left: -15%;
   width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(128, 47, 185, 0.2) 0%, transparent 70%);
 }
 
 .grid-lines {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background-image:
-    linear-gradient(rgba(10, 132, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(10, 132, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(239, 63, 41, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 63, 41, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
   opacity: 0.5;
 }
@@ -772,7 +772,7 @@ const faqItems = [
 .level-example {
   font-size: var(--font-size-small);
   color: var(--color-text-tertiary);
-  background: rgba(10, 132, 255, 0.08);
+  background: rgba(239, 63, 41, 0.08);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-md);
   border-left: 3px solid var(--color-primary);
@@ -791,7 +791,7 @@ const faqItems = [
 /* Use Cases */
 .use-cases-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-lg);
   margin-top: var(--spacing-2xl);
 }

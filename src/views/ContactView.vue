@@ -67,6 +67,7 @@
                   <option value="wonendr">WoneNDR — сетевая безопасность</option>
                   <option value="wonendr-audit">WoneNDR — бесплатный аудит сети</option>
                   <option value="wonescale">WoneScale — платформа разработки</option>
+                  <option value="data-showcase">B2B Витрина данных — портал данных</option>
                   <option value="fullstack">Заказная разработка (полный цикл)</option>
                   <option value="analytics">Аналитика и консалтинг</option>
                   <option value="design">Проектирование и дизайн</option>
@@ -249,7 +250,7 @@ const handleSubmit = () => {
 .form-textarea:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(239, 63, 41, 0.1);
 }
 
 .form-textarea {

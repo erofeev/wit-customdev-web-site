@@ -15,7 +15,7 @@
             Продукты и разработка для <span class="text-gradient">цифровой трансформации</span>
           </h1>
           <p class="hero-subtitle animate-slide-up">
-            Собственные продукты WoneScale и WoneNDR. Полный цикл заказной разработки. 18 лет опыта, 500+ проектов.
+            Три продукта: WoneNDR, WoneScale и B2B Витрина данных. Полный цикл заказной разработки. 18 лет опыта, 500+ проектов.
           </p>
           <div class="hero-cta animate-slide-up">
             <RouterLink to="/products/wonendr" class="btn btn-primary">
@@ -23,6 +23,9 @@
             </RouterLink>
             <RouterLink to="/products/wonescale" class="btn btn-outline">
               WoneScale — платформа
+            </RouterLink>
+            <RouterLink to="/products/data-showcase" class="btn btn-outline">
+              B2B Витрина данных
             </RouterLink>
           </div>
         </div>
@@ -63,6 +66,19 @@
               <li>Полиглот-микросервисы</li>
             </ul>
             <span class="product-link">Подробнее о WoneScale →</span>
+          </RouterLink>
+
+          <RouterLink to="/products/data-showcase" class="product-card card">
+            <div class="product-icon">📊</div>
+            <h3>B2B Витрина данных</h3>
+            <p class="product-tagline">Корпоративный портал данных</p>
+            <p class="product-desc">Платформа для публикации и безопасного доступа к корпоративным данным. Личные кабинеты, RLS/FLS-безопасность на уровне БД, геоданные и карты.</p>
+            <ul class="product-highlights">
+              <li>Безопасность на уровне PostgreSQL</li>
+              <li>SaaS / On-Premise / Cloud</li>
+              <li>Запуск за 2-4 месяца</li>
+            </ul>
+            <span class="product-link">Подробнее о B2B Витрине →</span>
           </RouterLink>
         </div>
       </div>
@@ -234,7 +250,7 @@ import TagCloud, { techTags } from '@/components/TagCloud.vue'
 
 /* Products */
 .products-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-xl); margin-top: var(--spacing-2xl);
 }
 
@@ -331,6 +347,10 @@ import TagCloud, { techTags } from '@/components/TagCloud.vue'
 .cta-buttons { display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; }
 
 .btn-lg { padding: var(--spacing-lg) var(--spacing-2xl); font-size: var(--font-size-large); }
+
+@media (max-width: 1024px) {
+  .products-grid { grid-template-columns: 1fr 1fr; }
+}
 
 @media (max-width: 768px) {
   .hero { min-height: 500px; padding: var(--spacing-4xl) 0; }

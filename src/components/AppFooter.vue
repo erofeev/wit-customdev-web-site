@@ -47,7 +47,7 @@
             <ul class="footer-links">
               <li><RouterLink to="/products/wonescale">WoneScale</RouterLink></li>
               <li><RouterLink to="/products/wonendr">WoneNDR</RouterLink></li>
-              <li><RouterLink to="/products/data-showcase">Data Showcase</RouterLink></li>
+              <li><RouterLink to="/products/data-showcase">B2B Витрина данных</RouterLink></li>
               <li><RouterLink to="/technologies">Технологии</RouterLink></li>
             </ul>
           </div>

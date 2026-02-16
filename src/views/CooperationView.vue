@@ -543,7 +543,7 @@ const guarantees = [
   flex-direction: column;
   gap: 2px;
   padding: var(--spacing-md);
-  background: rgba(10, 132, 255, 0.04);
+  background: rgba(239, 63, 41, 0.04);
   border-radius: var(--radius-md);
   border-left: 3px solid var(--color-primary);
 }
@@ -711,7 +711,7 @@ const guarantees = [
 }
 
 .compare-table tbody tr:hover {
-  background: rgba(10, 132, 255, 0.03);
+  background: rgba(239, 63, 41, 0.03);
 }
 
 /* Guarantees */

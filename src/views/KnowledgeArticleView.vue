@@ -194,7 +194,7 @@ const tagToSlug: Record<string, string> = {
   'RLS': 'rls-fls-data-security',
   'FLS': 'rls-fls-data-security',
   'Multi-tenant': 'rls-fls-data-security',
-  'Data Showcase': 'rls-fls-data-security'
+  'B2B Витрина данных': 'rls-fls-data-security'
 }
 
 const getTagLink = (tag: string): string => {
@@ -1766,8 +1766,8 @@ CREATE POLICY company_isolation ON orders
         <li><strong>Shared table + RLS</strong> — одна таблица для всех, изоляция через RLS. Дёшево, масштабируемо, безопасно</li>
       </ul>
 
-      <h2>Наш подход в Data Showcase</h2>
-      <p>В нашей платформе Data Showcase мы реализуем трёхуровневую безопасность:</p>
+      <h2>Наш подход в B2B Витрине данных</h2>
+      <p>В нашей платформе B2B Витрина данных мы реализуем трёхуровневую безопасность:</p>
       <ul>
         <li><strong>Уровень 1: Разделы</strong> — какие модули доступны компании</li>
         <li><strong>Уровень 2: Сущности (RLS)</strong> — какие записи видит пользователь</li>

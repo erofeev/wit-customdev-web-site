@@ -3,7 +3,7 @@
     <!-- Hero -->
     <section class="hero hero-small">
       <div class="container">
-        <div style="display:inline-block;background:var(--color-primary-ultra-light);color:var(--color-primary);padding:4px 16px;border-radius:9999px;font-size:0.875rem;font-weight:600;margin-bottom:16px;">Продукт</div>
+        <div class="hero-badge">Продукт</div>
         <h1 class="hero-title"><span class="text-gradient">WoneScale</span> — платформа для быстрого старта проектов</h1>
         <p class="hero-subtitle">
           Не одно решение для всех, а модульная архитектура под каждую задачу
