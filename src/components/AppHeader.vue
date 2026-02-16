@@ -3,7 +3,9 @@
     <div class="container">
       <nav class="nav">
         <RouterLink to="/" class="logo">
-          <span class="logo-text">TechSolutions</span>
+          <span class="logo-text">WONE</span><span class="logo-suffix">IT</span>
+          <span class="logo-divider">|</span>
+          <span class="logo-practice">Разработка</span>
         </RouterLink>
 
         <button class="mobile-menu-toggle" @click="toggleMobileMenu" aria-label="Toggle menu">
@@ -13,26 +15,39 @@
         </button>
 
         <ul class="nav-links" :class="{ 'nav-links-open': mobileMenuOpen }">
-          <li>
-            <RouterLink to="/" class="nav-link" @click="closeMobileMenu">Главная</RouterLink>
+          <li class="nav-dropdown" @mouseenter="openDropdown" @mouseleave="closeDropdown">
+            <button class="nav-link nav-dropdown-trigger" @click="toggleDropdown">
+              Продукты
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="dropdown-chevron" :class="{ open: dropdownOpen }">
+                <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <ul class="nav-dropdown-menu" :class="{ 'nav-dropdown-open': dropdownOpen }">
+              <li>
+                <RouterLink to="/products/wonescale" class="dropdown-link" @click="closeAll">
+                  <strong>WoneScale</strong>
+                  <span>Платформа быстрой разработки</span>
+                </RouterLink>
+              </li>
+              <li>
+                <RouterLink to="/products/wonendr" class="dropdown-link" @click="closeAll">
+                  <strong>WoneNDR</strong>
+                  <span>Сетевая безопасность (NDR)</span>
+                </RouterLink>
+              </li>
+            </ul>
           </li>
           <li>
-            <RouterLink to="/services" class="nav-link" @click="closeMobileMenu">Услуги</RouterLink>
+            <RouterLink to="/services" class="nav-link" @click="closeAll">Услуги</RouterLink>
           </li>
           <li>
-            <RouterLink to="/technologies" class="nav-link" @click="closeMobileMenu">Технологии</RouterLink>
+            <RouterLink to="/cases" class="nav-link" @click="closeAll">Кейсы</RouterLink>
           </li>
           <li>
-            <RouterLink to="/platform" class="nav-link" @click="closeMobileMenu">Платформа</RouterLink>
+            <RouterLink to="/cooperation" class="nav-link" @click="closeAll">Сотрудничество</RouterLink>
           </li>
           <li>
-            <RouterLink to="/cooperation" class="nav-link" @click="closeMobileMenu">Сотрудничество</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/cases" class="nav-link" @click="closeMobileMenu">Кейсы</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/contact" class="btn btn-primary nav-cta" @click="closeMobileMenu">
+            <RouterLink to="/contact" class="btn btn-primary nav-cta" @click="closeAll">
               Обсудить проект
             </RouterLink>
           </li>
@@ -48,6 +63,7 @@ import { RouterLink } from 'vue-router'
 
 const isScrolled = ref(false)
 const mobileMenuOpen = ref(false)
+const dropdownOpen = ref(false)
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
@@ -55,10 +71,24 @@ const handleScroll = () => {
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
+  if (!mobileMenuOpen.value) dropdownOpen.value = false
 }
 
-const closeMobileMenu = () => {
+const toggleDropdown = () => {
+  dropdownOpen.value = !dropdownOpen.value
+}
+
+const openDropdown = () => {
+  if (window.innerWidth > 768) dropdownOpen.value = true
+}
+
+const closeDropdown = () => {
+  if (window.innerWidth > 768) dropdownOpen.value = false
+}
+
+const closeAll = () => {
   mobileMenuOpen.value = false
+  dropdownOpen.value = false
 }
 
 onMounted(() => {
@@ -99,6 +129,7 @@ onUnmounted(() => {
 .logo {
   display: flex;
   align-items: center;
+  gap: var(--spacing-xs);
   text-decoration: none;
 }
 
@@ -106,10 +137,28 @@ onUnmounted(() => {
   font-family: var(--font-family-heading);
   font-size: 1.5rem;
   font-weight: var(--font-weight-bold);
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
+}
+
+.logo-suffix {
+  font-family: var(--font-family-heading);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}
+
+.logo-divider {
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-light);
+  margin: 0 var(--spacing-xs);
+}
+
+.logo-practice {
+  font-family: var(--font-family-heading);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.5px;
 }
 
 .mobile-menu-toggle {
@@ -145,6 +194,13 @@ onUnmounted(() => {
   transition: all var(--transition-fast);
   position: relative;
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
 .nav-link:hover {
@@ -170,6 +226,62 @@ onUnmounted(() => {
 .nav-cta {
   margin-left: var(--spacing-md);
   padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-chevron {
+  transition: transform var(--transition-fast);
+}
+
+.dropdown-chevron.open {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--spacing-sm));
+  left: 0;
+  min-width: 280px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-bg-tertiary);
+  padding: var(--spacing-sm);
+  list-style: none;
+  z-index: var(--z-dropdown);
+}
+
+.nav-dropdown-open {
+  display: block;
+}
+
+.dropdown-link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background var(--transition-fast);
+}
+
+.dropdown-link:hover {
+  background: var(--color-primary-ultra-light);
+}
+
+.dropdown-link strong {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+}
+
+.dropdown-link span {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-xs);
 }
 
 /* Mobile styles */
@@ -204,6 +316,7 @@ onUnmounted(() => {
     padding: var(--spacing-md);
     font-size: var(--font-size-base);
     text-align: center;
+    justify-content: center;
   }
 
   .nav-link.router-link-active::after {
@@ -213,6 +326,22 @@ onUnmounted(() => {
   .nav-cta {
     margin-left: 0;
     margin-top: var(--spacing-md);
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    min-width: auto;
+    padding: 0;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    margin-top: var(--spacing-sm);
+  }
+
+  .dropdown-link {
+    text-align: center;
+    align-items: center;
   }
 }
 </style>

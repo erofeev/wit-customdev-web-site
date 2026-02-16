@@ -3,7 +3,8 @@
     <!-- Hero -->
     <section class="hero hero-small">
       <div class="container">
-        <h1 class="hero-title">Платформа для быстрого старта проектов</h1>
+        <div style="display:inline-block;background:var(--color-primary-ultra-light);color:var(--color-primary);padding:4px 16px;border-radius:9999px;font-size:0.875rem;font-weight:600;margin-bottom:16px;">Продукт</div>
+        <h1 class="hero-title"><span class="text-gradient">WoneScale</span> — платформа для быстрого старта проектов</h1>
         <p class="hero-subtitle">
           Не одно решение для всех, а модульная архитектура под каждую задачу
         </p>
@@ -205,8 +206,8 @@
     <section class="section">
       <div class="container">
         <div class="cta-box card-glass">
-          <h2>Попробуйте платформу</h2>
-          <p>Получите демо-доступ и оцените возможности</p>
+          <h2>Попробуйте WoneScale</h2>
+          <p>Получите демо-доступ и оцените возможности платформы</p>
           <RouterLink to="/contact" class="btn btn-primary btn-lg">Запросить демо</RouterLink>
         </div>
       </div>

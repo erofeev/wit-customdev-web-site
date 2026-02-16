@@ -9,7 +9,23 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       meta: {
-        title: 'Главная | Разработка веб-систем'
+        title: 'WONE IT | Разработка — Продукты и услуги для цифровой трансформации'
+      }
+    },
+    {
+      path: '/products/wonescale',
+      name: 'wonescale',
+      component: () => import('@/views/PlatformView.vue'),
+      meta: {
+        title: 'WoneScale — Платформа быстрой разработки | WONE IT'
+      }
+    },
+    {
+      path: '/products/wonendr',
+      name: 'wonendr',
+      component: () => import('@/views/WoneNdrView.vue'),
+      meta: {
+        title: 'WoneNDR — Сетевая безопасность (NDR) для бизнеса | WONE IT'
       }
     },
     {
@@ -17,7 +33,7 @@ const router = createRouter({
       name: 'services',
       component: () => import('@/views/ServicesView.vue'),
       meta: {
-        title: 'Услуги | Разработка веб-систем'
+        title: 'Услуги разработки | WONE IT'
       }
     },
     {
@@ -25,15 +41,7 @@ const router = createRouter({
       name: 'technologies',
       component: () => import('@/views/TechnologiesView.vue'),
       meta: {
-        title: 'Технологии | Разработка веб-систем'
-      }
-    },
-    {
-      path: '/platform',
-      name: 'platform',
-      component: () => import('@/views/PlatformView.vue'),
-      meta: {
-        title: 'Платформа | Разработка веб-систем'
+        title: 'Технологии | WONE IT'
       }
     },
     {
@@ -41,7 +49,7 @@ const router = createRouter({
       name: 'cooperation',
       component: () => import('@/views/CooperationView.vue'),
       meta: {
-        title: 'Модели сотрудничества | Разработка веб-систем'
+        title: 'Модели сотрудничества | WONE IT'
       }
     },
     {
@@ -49,7 +57,7 @@ const router = createRouter({
       name: 'cases',
       component: () => import('@/views/CasesView.vue'),
       meta: {
-        title: 'Кейсы | Разработка веб-систем'
+        title: 'Кейсы и проекты | WONE IT'
       }
     },
     {
@@ -57,11 +65,16 @@ const router = createRouter({
       name: 'contact',
       component: () => import('@/views/ContactView.vue'),
       meta: {
-        title: 'Контакты | Разработка веб-систем'
+        title: 'Контакты | WONE IT'
       }
+    },
+    // Redirects for old routes
+    {
+      path: '/platform',
+      redirect: '/products/wonescale'
     }
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {
@@ -71,8 +84,8 @@ const router = createRouter({
 })
 
 // Update document title
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title as string || 'Разработка веб-систем'
+router.beforeEach((to, _from, next) => {
+  document.title = to.meta.title as string || 'WONE IT | Разработка'
   next()
 })
 

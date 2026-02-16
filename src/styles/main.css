@@ -9,20 +9,20 @@
 
 /* ===== CSS VARIABLES (Дизайн-система) ===== */
 :root {
-  /* Primary Colors */
-  --color-primary: #0A84FF;
-  --color-primary-dark: #0066CC;
-  --color-primary-light: #409CFF;
-  --color-primary-ultra-light: #E5F2FF;
+  /* Primary Colors — WONE IT Red/Orange */
+  --color-primary: #ef3f29;
+  --color-primary-dark: #c30101;
+  --color-primary-light: #ff6b52;
+  --color-primary-ultra-light: #fef2f0;
 
   /* Secondary Colors */
-  --color-secondary: #2C3E50;
-  --color-secondary-dark: #1A252F;
+  --color-secondary: #1a1a2e;
+  --color-secondary-dark: #0f0f1a;
   --color-secondary-light: #475569;
 
-  /* Accent */
-  --color-accent: #00D9FF;
-  --color-accent-glow: rgba(0, 217, 255, 0.3);
+  /* Accent — WONE IT Purple */
+  --color-accent: #802fb9;
+  --color-accent-glow: rgba(128, 47, 185, 0.3);
 
   /* Background */
   --color-bg-primary: #FFFFFF;
@@ -96,12 +96,12 @@
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
   --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  --shadow-primary: 0 10px 30px -5px rgba(10, 132, 255, 0.3);
-  --shadow-accent: 0 10px 30px -5px rgba(0, 217, 255, 0.4);
+  --shadow-primary: 0 10px 30px -5px rgba(239, 63, 41, 0.3);
+  --shadow-accent: 0 10px 30px -5px rgba(128, 47, 185, 0.4);
 
   /* Gradients */
-  --gradient-hero: linear-gradient(135deg, rgba(10, 132, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%);
-  --gradient-accent: linear-gradient(90deg, #0A84FF 0%, #00D9FF 100%);
+  --gradient-hero: linear-gradient(135deg, rgba(239, 63, 41, 0.08) 0%, rgba(128, 47, 185, 0.05) 100%);
+  --gradient-accent: linear-gradient(90deg, #ef3f29 0%, #802fb9 100%);
   --gradient-dark: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
   --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 
@@ -389,10 +389,10 @@ a:hover {
 
 @keyframes glowPulse {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+    box-shadow: 0 0 20px rgba(239, 63, 41, 0.4);
   }
   50% {
-    box-shadow: 0 0 40px rgba(0, 217, 255, 0.8);
+    box-shadow: 0 0 40px rgba(239, 63, 41, 0.8);
   }
 }
 

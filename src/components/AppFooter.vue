@@ -5,9 +5,9 @@
         <div class="footer-grid">
           <!-- Company Info -->
           <div class="footer-column">
-            <h3 class="footer-title">TechSolutions</h3>
+            <h3 class="footer-title">WONE IT</h3>
             <p class="footer-description">
-              Создаем веб-системы, которые решают ваши задачи. От аналитики до поддержки.
+              Практика заказной разработки WONE IT. Продукты и услуги для цифровой трансформации бизнеса.
             </p>
             <div class="footer-social">
               <a href="#" class="social-link" aria-label="Telegram">
@@ -41,14 +41,13 @@
             </ul>
           </div>
 
-          <!-- Technologies -->
+          <!-- Products -->
           <div class="footer-column">
-            <h4 class="footer-heading">Технологии</h4>
+            <h4 class="footer-heading">Продукты</h4>
             <ul class="footer-links">
-              <li><RouterLink to="/technologies">Малый бизнес</RouterLink></li>
-              <li><RouterLink to="/technologies">Средний бизнес</RouterLink></li>
-              <li><RouterLink to="/technologies">Enterprise</RouterLink></li>
-              <li><RouterLink to="/platform">Платформа</RouterLink></li>
+              <li><RouterLink to="/products/wonescale">WoneScale</RouterLink></li>
+              <li><RouterLink to="/products/wonendr">WoneNDR</RouterLink></li>
+              <li><RouterLink to="/technologies">Технологии</RouterLink></li>
             </ul>
           </div>
 
@@ -65,7 +64,7 @@
 
         <div class="footer-bottom">
           <p class="footer-copyright">
-            &copy; {{ currentYear }} TechSolutions. Все права защищены.
+            &copy; {{ currentYear }} WONE IT. Все права защищены.
           </p>
           <div class="footer-legal">
             <a href="#">Политика конфиденциальности</a>
@@ -112,10 +111,7 @@ const currentYear = computed(() => new Date().getFullYear())
   font-family: var(--font-family-heading);
   font-size: var(--font-size-h4);
   font-weight: var(--font-weight-bold);
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary-light);
   margin-bottom: 0;
 }
 

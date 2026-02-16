@@ -63,14 +63,14 @@
               <div class="form-group">
                 <label for="service">Интересующая услуга</label>
                 <select id="service" v-model="form.service" class="form-select">
-                  <option value="">Выберите услугу</option>
+                  <option value="">Выберите продукт или услугу</option>
+                  <option value="wonendr">WoneNDR — сетевая безопасность</option>
+                  <option value="wonendr-audit">WoneNDR — бесплатный аудит сети</option>
+                  <option value="wonescale">WoneScale — платформа разработки</option>
+                  <option value="fullstack">Заказная разработка (полный цикл)</option>
                   <option value="analytics">Аналитика и консалтинг</option>
                   <option value="design">Проектирование и дизайн</option>
-                  <option value="frontend">Frontend разработка</option>
-                  <option value="backend">Backend разработка</option>
-                  <option value="fullstack">Полный цикл разработки</option>
-                  <option value="platform">Лицензирование платформы</option>
-                  <option value="support">Поддержка</option>
+                  <option value="support">Поддержка и развитие</option>
                 </select>
               </div>
 
